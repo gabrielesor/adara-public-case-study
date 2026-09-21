@@ -12,7 +12,7 @@ The evidence is aggregate by design. It is intended to help a reader understand 
 | Order processing | 5,000+ production orders processed |
 | Product breadth | 50+ operational capabilities |
 
-These are factual public summaries. The rounded order and capability figures are durable disclosure boundaries rather than exact internal counters, and no additional quantitative metric is needed to interpret them.
+These are factual public summaries. The figures are intentionally presented as aggregate production metrics rather than exact internal counters, and no additional quantitative metric is needed to interpret them.
 
 ## Production duration
 
@@ -45,7 +45,7 @@ For readability, the public [Capability Map](03-capability-map.md) groups the br
 - Analysis & Reporting
 - Administration & Operations
 
-A capability is a product responsibility or function at the level used by this case study. It should not be interpreted one-to-one as a menu item, interface endpoint, source-code class, packaged library, deployable component, or database table. The public grouping communicates what the product does and how its areas cooperate without reproducing an exhaustive internal inventory.
+A capability is a product responsibility or function at the level used by this case study. It should not be interpreted one-to-one as a menu item, interface endpoint, source-code class, packaged library, deployable component, or database table. The domain grouping communicates what the product does and how its areas cooperate without reproducing an exhaustive internal inventory.
 
 The capability figure complements the domain map: the aggregate communicates breadth, while the map provides the durable structure used to explain that breadth.
 
@@ -65,7 +65,7 @@ The public evidence remains focused on software engineering and operational use.
 
 It also does not identify the organisation, fund, or stakeholders associated with the operating environment. These omissions preserve confidentiality and prevent unrelated financial or operational data from being mistaken for evidence about the architecture or product capabilities.
 
-The three published aggregates are the complete quantitative production-scale disclosure for this version of the public case study.
+The three published aggregates are the complete quantitative production-scale disclosure in this case study.
 
 ## Relationship to the rest of the case study
 
@@ -77,6 +77,6 @@ Reading these pages together provides the intended interpretation: quantitative 
 
 All figures on this page are aggregate public facts. Exact internal counts, confidential financial and stakeholder information, real orders and positions, detailed infrastructure measurements, and proprietary strategy logic remain outside the case-study scope.
 
-This page provides a bounded record of production duration, repeated order processing, and product breadth. It introduces no additional metric or claim beyond those approved facts.
+This page provides a bounded record of production duration, repeated order processing, and product breadth. It introduces no additional metric or claim beyond those published facts.
 
 [← Previous](09-operations-and-reliability.md) | [Case Study Home](../README.md) | [Next →](11-ai-assisted-operations.md)

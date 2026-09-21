@@ -18,10 +18,10 @@ flowchart LR
     adara -->|"Submit orders"| exchanges
     adara -->|"Send notifications and compliance reports"| recipients
     monitoring -->|"Observe the production web endpoint"| adara
-    adara -->|"AI interaction requests / selected context"| aiService
-    aiService -->|"Streaming responses / tool requests"| adara
+    adara -->|"Responses requests / remote MCP results"| aiService
+    aiService -->|"Streaming responses / remote MCP requests"| adara
 ```
 
 This is a system-context view, not a network or deployment topology. It does not identify organisations, exchanges, data providers, recipients, monitoring providers, infrastructure services, private endpoints, authorization, or communication protocols. The web console, AiAlly, and persistent operational state are inside the Adara system boundary and are therefore not shown as external systems.
 
-The OpenAI API boundary represents AiAlly's external AI-service interaction. The first-generation Assistants API integration is a retired historical production implementation; the Responses API and remote MCP replacement has been validated in pre-production, with production rollout pending. The diagram does not imply that the replacement is currently operating in production.
+The OpenAI API boundary represents AiAlly's external AI-service interaction. In the replacement, the Responses API mediates remote MCP requests to selected capabilities inside the Adara boundary and receives their results before the response is streamed back. The first-generation Assistants API integration is a historical production implementation that is currently unavailable following retirement of the upstream API; the Responses API and remote MCP replacement has been successfully validated in pre-production, with production rollout pending. The diagram does not imply that the replacement is currently operating in production.

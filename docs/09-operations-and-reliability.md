@@ -50,7 +50,7 @@ The production web console is monitored through an external uptime-monitoring se
 
 The scope of that evidence is deliberately narrow. External observation of the web console does not prove the availability of automated strategies, scheduled jobs, exchange connectivity, market-data delivery, report generation, or every internal component. This case study does not extrapolate endpoint observations into a lifetime availability percentage for the complete Adara platform.
 
-The monitoring provider, its configuration, measurement intervals, notification routing, and historical measurements remain outside public scope. The approved fact is the existence of external web-endpoint monitoring, not a broader certification of platform operation.
+The monitoring provider, its configuration, measurement intervals, notification routing, and historical measurements remain outside public scope. The documented fact is the existence of external web-endpoint monitoring, not a broader certification of platform operation.
 
 ## Persistent operational state
 
@@ -58,7 +58,7 @@ Adara maintains persistent operational state through MySQL relational persistenc
 
 Persistence matters because the platform's operational view is not limited to values held temporarily during one process or interaction. Retained state connects current operation with prior activity and allows histories and evidence to remain available for later review. It also supports continuity of the product view across interactive, automated, and scheduled responsibilities.
 
-This public description identifies the persistence responsibility and approved technology only. It does not define physical topology, data-placement design, backup design, isolation behavior, or recovery objectives. Those details are not necessary to understand why persistent state is part of the operational model.
+This public description identifies the persistence responsibility and named technology only. It does not define physical topology, data-placement design, backup design, isolation behavior, or recovery objectives. Those details are not necessary to understand why persistent state is part of the operational model.
 
 ## Scheduled processing
 
@@ -92,7 +92,7 @@ This fact establishes production use, not an availability measure for strategy e
 
 ## AI-assisted operations status
 
-AiAlly's first-generation OpenAI Assistants API integration was used in the production Adara environment and is now retired following retirement of the upstream API. It is a historical production implementation, not a currently operating capability.
+AiAlly's first-generation OpenAI Assistants API integration is a historical production implementation that is currently unavailable following retirement of the upstream API. Its historical production status does not imply that it remains a working user capability.
 
 The replacement based on the OpenAI Responses API, remote MCP, and optional document retrieval has been successfully validated in pre-production. Production rollout is pending. Its status must therefore remain separate from both the legacy production history and the production status of the wider Adara platform. See [AI-Assisted Operations — AiAlly](11-ai-assisted-operations.md).
 
@@ -114,7 +114,7 @@ This boundary is not a limitation of the architecture description; it is a preci
 
 ## Relationship to operational scale
 
-Reliability evidence and scale evidence answer different questions. This page explains operational surfaces, monitoring scope, state retention, dependencies, and handling boundaries. [Operational Scale](10-operational-scale.md) separately addresses the approved quantitative evidence about production duration, order processing, and capability breadth.
+Reliability evidence and scale evidence answer different questions. This page explains operational surfaces, monitoring scope, state retention, dependencies, and handling boundaries. [Operational Scale](10-operational-scale.md) separately addresses the published quantitative evidence about production duration, order processing, and capability breadth.
 
 Keeping those topics separate prevents production volume or feature count from being interpreted as an availability measure. This page does not duplicate that quantitative scale treatment.
 

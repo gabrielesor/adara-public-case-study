@@ -52,9 +52,9 @@ Adara hosts automated trading strategies and supports their configuration, execu
 
 ### Compliance
 
-Compliance controls are evaluated before an order is submitted to an exchange. Applicable categories include trade size, account exposure, portfolio exposure, and portfolio concentration. An order that fails applicable controls is prevented from reaching the exchange, and the same compliance layer applies to discretionary and automated activity.
+For Adara-originated orders, compliance controls are evaluated before exchange submission. Applicable categories include trade size, account exposure, portfolio exposure, and portfolio concentration. An Adara-originated order that fails applicable controls is prevented from reaching the exchange, and the same compliance layer applies to discretionary and automated origins.
 
-Order values are normalized into a common reference currency for evaluation. Multi-channel early-warning and compliance-notification mechanisms support the process. Adara also produces an order-level compliance PDF for individual orders and a daily portfolio-level compliance PDF; reports are distributed by email and retained server-side.
+Order values are normalized into a common reference currency for evaluation. Multi-channel early-warning and compliance-notification mechanisms support the process. For an Adara-originated order that successfully follows the controlled path, Adara can produce an order-level compliance PDF; a separate daily portfolio-level compliance PDF provides a scheduled portfolio view. Reports are distributed by email and retained server-side.
 
 ### Analysis & Reporting
 
@@ -68,7 +68,7 @@ Administrative and operational capabilities support the continuing use of the pl
 
 AiAlly is Adara's AI-assisted user interface for natural-language interaction with product knowledge and selected operational information or capabilities. It is a cross-cutting interface rather than a separate trading domain, and it is not part of proprietary strategy decision logic.
 
-The first generation, based on the OpenAI Assistants API, was used in the production Adara environment and is now retired. Its replacement uses the OpenAI Responses API, remote MCP integration, and optional document retrieval; it has been successfully validated in pre-production, with production rollout pending. See [AI-Assisted Operations — AiAlly](11-ai-assisted-operations.md).
+The first generation, based on the OpenAI Assistants API, is a historical production implementation that is currently unavailable following retirement of the upstream API. Its replacement uses the OpenAI Responses API, remote MCP integration, and optional document retrieval; it has been successfully validated in pre-production, with production rollout pending. See [AI-Assisted Operations — AiAlly](11-ai-assisted-operations.md).
 
 ## Discretionary and automated trading
 
@@ -78,7 +78,7 @@ The public scope demonstrates that Adara can host and operate algorithmic strate
 
 ## Compliance as part of execution
 
-Compliance in Adara is part of the pre-trade order path rather than only a post-trade reporting activity. Applicable controls are evaluated before exchange submission. If an order fails those controls, it does not reach the exchange.
+For Adara-originated orders, compliance is part of the pre-trade path rather than only a post-trade reporting activity. Applicable controls are evaluated before exchange submission. If an order fails those controls, it does not reach the exchange.
 
 This placement matters operationally because the same enforcement layer applies whether the order originated from discretionary activity or an automated strategy. Normalized order values and portfolio state provide a common basis for evaluation, while retained reports provide order-level and daily portfolio-level evidence. See [Compliance and Audit](07-compliance-and-audit.md) for the dedicated public treatment of this topic; internal rule identifiers, thresholds, formulas, reports, and distribution details remain outside its scope.
 
@@ -96,6 +96,6 @@ This overview does not identify specific providers, exchanges, AWS services, com
 
 ## Public case-study boundaries
 
-This repository contains documentation, not Adara's proprietary application source code. It excludes organisation, fund, and stakeholder identities; real account identifiers; real orders, positions, balances, valuations, and transactions; exact compliance logic and limits; proprietary strategy decision logic; and private AiAlly prompts, tool configuration, endpoints, and retrieved documents. Future visual material may use only synthetic or sanitized data.
+This repository contains documentation, not Adara's proprietary application source code. It excludes organisation, fund, and stakeholder identities; real account identifiers; real orders, positions, balances, valuations, and transactions; exact compliance logic and limits; proprietary strategy decision logic; and private AiAlly prompts, tool configuration, endpoints, and retrieved documents. Published visual material may use only synthetic or properly sanitized data.
 
 [← Previous](../README.md) | [Case Study Home](../README.md) | [Next →](02-role-and-history.md)

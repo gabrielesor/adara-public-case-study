@@ -26,8 +26,6 @@ flowchart TB
         console -->|"Review and reporting"| analysis
         console -->|"Administration"| administration
         console -->|"Natural-language interaction"| aially
-        aially -->|"MCP tool invocation"| tools
-        tools -->|"Selected capability context"| aially
         market -->|"Normalized market state"| portfolio
         market -->|"Real-time market state"| strategies
         market -->|"Trading context"| trading
@@ -49,11 +47,13 @@ flowchart TB
     exchanges -->|"Execution information"| trading
     trading -->|"Orders that pass applicable controls"| exchanges
     aially -->|"Responses requests / application context"| aiService
-    aiService -->|"Streaming responses / tool requests"| aially
+    aiService -->|"Streaming responses"| aially
+    aiService -->|"Remote MCP tool requests"| tools
+    tools -->|"Selected capability results"| aiService
 ```
 
 The boxes in this diagram represent public logical responsibilities, not a one-to-one map of deployable components, processes, JARs, hosts, or AWS resources.
 
 The diagram is not a deployment, network, or source-code/module view. Multiple responsibilities may cooperate within the platform, and the drawing intentionally omits implementation-sensitive topology, interfaces, and security configuration.
 
-AiAlly is an AI-assisted user and operational interface, not algorithmic trading logic. Its MCP node represents a curated capability boundary without publishing tool names, count, permissions, or configuration. The OpenAI boundary represents the Responses/MCP replacement validated in pre-production; production rollout is pending. The retired Assistants API generation is historical production context and is not shown as a current runtime path.
+AiAlly is an AI-assisted user and operational interface, not algorithmic trading logic. The Responses API mediates remote MCP tool requests and receives results from the curated Adara capability boundary; the diagram does not depict AiAlly independently invoking a local MCP tool. The MCP node publishes no tool names, count, permissions, or configuration. The OpenAI boundary represents the Responses/MCP replacement successfully validated in pre-production; production rollout is pending. The Assistants API generation is a historical production implementation that is currently unavailable following retirement of the upstream API and is not shown as a current runtime path.

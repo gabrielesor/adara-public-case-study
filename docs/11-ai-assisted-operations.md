@@ -2,7 +2,7 @@
 
 AiAlly is Adara's AI-assisted user interface. It provides a natural-language interaction layer for product knowledge and selected Adara operational information or capabilities while preserving the boundaries of the wider platform.
 
-AiAlly has evolved through two technical generations. The first was used in the production Adara environment and is now retired. Its replacement has been designed and implemented with the OpenAI Responses API and remote Model Context Protocol (MCP) integration, has been successfully validated in pre-production, and is awaiting production rollout. Keeping those statuses separate is essential to the public architecture.
+AiAlly has evolved through two technical generations. The first is a historical production implementation that is currently unavailable following retirement of the upstream OpenAI Assistants API. Its replacement has been designed and implemented with the OpenAI Responses API and remote Model Context Protocol (MCP) integration and has been successfully validated in pre-production; production rollout is pending. Keeping those statuses separate is essential to the public architecture.
 
 ## Scope
 
@@ -24,7 +24,7 @@ Natural-language interaction also does not imply unrestricted platform access. T
 
 The first generation of AiAlly was based on the OpenAI Assistants API. It was deployed and used as part of the production Adara environment, establishing a historical production implementation of AI-assisted interaction within the product.
 
-That generation is now considered legacy and end of life following retirement of the upstream Assistants API. It is not described as a currently operating production capability. The public record preserves its production history while making clear that its technical basis and operational status belong to an earlier generation.
+That generation is currently unavailable as a working user capability following retirement of the upstream Assistants API. This status preserves its production history without implying that it still functions normally or that its implementation has necessarily been physically removed.
 
 No adoption level or production-usage count is disclosed. The relevant fact is architectural and historical: Adara integrated an AI-assisted interface in production, and the upstream lifecycle of its API later required a replacement.
 
@@ -34,8 +34,8 @@ The replacement is more than an endpoint substitution. It reorganizes the intera
 
 At public architecture level, these concerns cooperate as follows:
 
-- the Responses API provides the model interaction boundary;
-- MCP provides a standardized boundary for selected Adara capabilities;
+- the Responses API provides the model interaction and tool-orchestration boundary;
+- remote MCP provides a standardized boundary through which that orchestration reaches selected Adara capabilities and receives their results;
 - File Search or RAG can supply relevant product knowledge from Adara documentation;
 - streaming returns response content progressively to the user interface;
 - page or application context can inform the interaction;
@@ -46,11 +46,11 @@ The replacement has been designed and implemented and has been successfully vali
 
 ## MCP-based operational context
 
-The replacement uses remote MCP integration as the standardized tool boundary between the model interaction and selected Adara capabilities. Publicly, this is described as **a curated set of Adara capabilities exposed through MCP tools**.
+The replacement uses remote MCP integration as the standardized tool boundary between the Responses interaction and selected Adara capabilities. Publicly, this is described as **a curated set of Adara capabilities exposed through MCP tools**.
 
-The boundary lets the interaction request relevant operational context or capability results through defined tool mediation instead of embedding every Adara responsibility in the conversational layer. This keeps AiAlly conceptually separate from the platform areas that own portfolio, order, compliance, reporting, or administrative behavior.
+AiAlly sends the interaction through the OpenAI Responses API. When tool use is relevant, the Responses orchestration invokes the remote MCP boundary, receives selected capability results through that interaction, and can use them in the model response streamed back through AiAlly. This keeps AiAlly conceptually separate from the platform areas that own portfolio, order, compliance, reporting, or administrative behavior.
 
-The public case study does not enumerate tools, assign individual permission semantics, or expose connection and authorization configuration. It makes no claim about a specific tool being observational or state-changing. Those details require a separate authorization decision and are not inferred from the existence of MCP integration.
+The public case study does not enumerate tools, assign individual permission semantics, or expose connection and authorization configuration. It makes no claim about a specific tool being observational or state-changing; those details are outside the public architecture and cannot be inferred from the existence of MCP integration.
 
 ## Product knowledge through retrieval
 
@@ -64,9 +64,9 @@ No vector-store identifier, file identifier, document path, private document, or
 
 The replacement interaction can be summarized at responsibility level:
 
-**User → AiAlly → OpenAI Responses API → model reasoning and tool selection → MCP and/or document retrieval → response streamed to the user**
+**User → AiAlly → OpenAI Responses API → model reasoning and tool selection → remote MCP and/or document retrieval → capability or retrieval results return through the Responses interaction → response streamed through AiAlly to the user**
 
-AiAlly supplies the interaction boundary and applicable page or application context. The Responses API supports the model exchange. When relevant, the flow can invoke MCP tools for selected Adara context, consult product documentation through retrieval, or combine both source types before response content is streamed back.
+AiAlly supplies the interaction boundary and applicable page or application context. The Responses API supports the model exchange. When relevant, the Responses interaction can invoke MCP tools for selected Adara context, consult product documentation through retrieval, or combine both source types before response content is streamed back.
 
 This is a conceptual flow, not a network sequence, protocol specification, or claim that every request uses every source. A request may depend on product knowledge, operational context, or neither, according to the interaction and configured capabilities.
 
@@ -84,10 +84,10 @@ The two implementation statuses are distinct:
 
 | Generation | Public status |
 | --- | --- |
-| OpenAI Assistants API integration | Historical production implementation; now retired and end of life after retirement of the upstream API |
+| OpenAI Assistants API integration | Historical production implementation; currently unavailable following retirement of the upstream API |
 | OpenAI Responses API with remote MCP integration | Designed and implemented; successfully validated in pre-production; production rollout pending |
 
-The historical production statement applies only to the first generation. It must not be transferred to the Responses/MCP replacement. Conversely, the retired first generation must not be presented as a currently available production capability.
+The historical production statement applies only to the first generation. It must not be transferred to the Responses/MCP replacement. Conversely, the currently unavailable first generation must not be presented as a working production capability.
 
 ## Separation from algorithmic trading
 

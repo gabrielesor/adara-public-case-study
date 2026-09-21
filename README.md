@@ -18,7 +18,7 @@ The platform ingests streaming data from external public market-data providers a
 
 Adara is therefore broader than a trading algorithm: it coordinates the operational path from changing market state and a trading decision through validation, compliance, execution, persistence, and subsequent analysis.
 
-AiAlly adds an AI-assisted natural-language interface for product knowledge and selected operational context. Its first OpenAI Assistants API integration is a retired historical production implementation; the replacement based on the OpenAI Responses API and remote MCP has been validated in pre-production, with production rollout pending. See [AI-Assisted Operations — AiAlly](docs/11-ai-assisted-operations.md).
+AiAlly adds an AI-assisted natural-language interface for product knowledge and selected operational context. Its first OpenAI Assistants API integration is a historical production implementation that is currently unavailable following retirement of the upstream API; the replacement based on the OpenAI Responses API and remote MCP has been successfully validated in pre-production, with production rollout pending. See [AI-Assisted Operations — AiAlly](docs/11-ai-assisted-operations.md).
 
 ## My role
 
@@ -33,7 +33,7 @@ Adara's 50+ operational capabilities are organized into eight public domains:
 - **Trading** — discretionary and automated execution, including exchange-specific capabilities.
 - **Orders** — validation, submission, monitoring, fill tracking, cancellation, fees, provenance, and history.
 - **Strategies** — configuration, execution, and monitoring of automated trading strategies.
-- **Compliance** — pre-trade controls applied to discretionary and automated orders.
+- **Compliance** — pre-trade controls applied to Adara-originated discretionary and automated orders.
 - **Analysis & Reporting** — operational analytics, historical analysis, and compliance reporting.
 - **Administration & Operations** — capabilities supporting administration, scheduled operation, monitoring, notifications, and AI-assisted interaction.
 
@@ -43,7 +43,7 @@ Adara uses a modular Java backend, MySQL relational persistence, and AWS deploym
 
 ## A production order lifecycle
 
-A production order follows a common high-level path:
+An Adara-originated production order follows a common high-level path:
 
 **Trader or strategy → validation → compliance evaluation → exchange submission → monitoring and execution → persistence, reporting, and analytics**
 
@@ -51,9 +51,9 @@ The lifecycle distinguishes discretionary, automated, and externally originated 
 
 ## Compliance by design
 
-Compliance evaluation is part of the pre-trade order path. Applicable controls—covering categories such as trade size, account exposure, portfolio exposure, and portfolio concentration—are evaluated before exchange submission. An order that fails those controls is prevented from reaching the exchange.
+Compliance evaluation is part of the pre-trade path for Adara-originated orders. Applicable controls—covering categories such as trade size, account exposure, portfolio exposure, and portfolio concentration—are evaluated before exchange submission. An Adara-originated order that fails those controls is prevented from reaching the exchange.
 
-The same compliance layer applies to discretionary and automated trading. Adara produces an order-level compliance PDF for individual orders and a daily portfolio-level compliance PDF; these reports are distributed by email and retained server-side. See [Compliance and Audit](docs/07-compliance-and-audit.md).
+The same compliance layer applies to Adara-originated discretionary orders and automated-strategy orders. For an order that successfully follows this controlled path, Adara can produce an order-level compliance PDF; the separate daily portfolio-level compliance PDF provides a scheduled portfolio view. These reports are distributed by email and retained server-side. See [Compliance and Audit](docs/07-compliance-and-audit.md).
 
 ## Operational experience
 
@@ -81,4 +81,4 @@ At a high level, the platform uses a Java backend, MySQL relational persistence,
 
 ## Confidentiality and scope
 
-This repository is a public technical case study. Proprietary application source code, organisation, fund, and stakeholder identities, real positions, balances, and transaction data are intentionally excluded. Proprietary trading decision logic is also outside the public scope. Any future screenshots will use synthetic or sanitized data.
+This repository is a public technical case study. Proprietary application source code, organisation, fund, and stakeholder identities, real positions, balances, and transaction data are intentionally excluded. Proprietary trading decision logic is also outside the public scope. Any screenshots published here must use synthetic or properly sanitized data.

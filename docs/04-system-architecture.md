@@ -22,7 +22,7 @@ The [System Context Diagram](../diagrams/system-context.md) shows Adara as one s
 
 Authorized operational users interact with the platform through its web-based operational console and can use AiAlly for natural-language interaction. Public market-data providers supply external market information. Digital-asset exchanges provide market and execution information and receive orders from Adara. The platform sends notifications and compliance reports to their intended recipients, while an external uptime-monitoring service observes the production web endpoint. The OpenAI API is an external service boundary for AiAlly interactions.
 
-The context view deliberately keeps the identities of organisations, exchanges, data providers, recipients, and monitoring providers out of scope. OpenAI is named only to identify the authorized AiAlly service boundary. MySQL remains inside the Adara boundary because relational persistence is an internal platform responsibility rather than an external actor. No network layout, private endpoint, authorization method, or AWS service is implied by the context diagram.
+The context view deliberately keeps the identities of organisations, exchanges, data providers, recipients, and monitoring providers out of scope. OpenAI is named only to identify the documented AiAlly service boundary. MySQL remains inside the Adara boundary because relational persistence is an internal platform responsibility rather than an external actor. No network layout, private endpoint, authorization method, or AWS service is implied by the context diagram.
 
 ## Logical architecture
 
@@ -34,9 +34,9 @@ The Web Console is the web-based operational interface for authorized users. It 
 
 ### AiAlly / AI-Assisted Interaction
 
-AiAlly provides a natural-language user and operational interface over product knowledge and selected Adara context or capabilities. The replacement architecture uses the OpenAI Responses API, remote MCP integration, optional File Search or RAG over product documentation, streaming responses, and operational tracing or diagnostics.
+AiAlly provides a natural-language user and operational interface over product knowledge and selected Adara context or capabilities. In the replacement architecture, AiAlly sends requests and application context through the OpenAI Responses API. The Responses interaction orchestrates requests through the remote MCP boundary to selected Adara capabilities, receives their results, and contributes them to the response streamed back through AiAlly. Optional File Search or RAG over product documentation and operational tracing or diagnostics complement this flow.
 
-MCP represents a standardized boundary for a curated set of Adara capabilities exposed through MCP tools; it is not a claim that AiAlly owns the underlying product responsibilities or bypasses their workflows. The first-generation OpenAI Assistants API integration is a retired historical production implementation. The Responses/MCP replacement has been successfully validated in pre-production, and production rollout is pending. See [AI-Assisted Operations — AiAlly](11-ai-assisted-operations.md).
+MCP represents a standardized boundary for a curated set of Adara capabilities exposed through MCP tools; it is not a claim that AiAlly directly invokes a local tool, owns the underlying product responsibilities, or bypasses their workflows. The first-generation OpenAI Assistants API integration is a historical production implementation that is currently unavailable following retirement of the upstream API. The Responses/MCP replacement has been successfully validated in pre-production, and production rollout is pending. See [AI-Assisted Operations — AiAlly](11-ai-assisted-operations.md).
 
 ### Market Data & Normalization
 
@@ -64,13 +64,13 @@ No proprietary strategy name, indicator, parameter, formula, decision rule, or d
 
 ### Compliance
 
-Compliance is positioned within the pre-trade execution path. It evaluates applicable controls using order and portfolio state before exchange submission. If an order fails applicable controls, it is prevented from reaching the exchange. The same compliance layer applies to discretionary and automated trading.
+Compliance is positioned within the pre-trade execution path for Adara-originated orders. It evaluates applicable controls using order and portfolio state before exchange submission. If an Adara-originated order fails applicable controls, it is prevented from reaching the exchange. The same compliance layer applies to discretionary and automated origins.
 
 The responsibility also produces retained evidence and reporting. This logical view shows the placement and inputs of compliance without disclosing internal rule identifiers, thresholds, limits, formulas, report contents, or distribution details.
 
 ### Analysis & Reporting
 
-Analysis & Reporting uses retained operational state to support review, historical analysis, portfolio and exposure analysis, trading analysis, and compliance reporting. Adara generates an order-level compliance PDF for individual orders and a daily portfolio-level compliance PDF. Those reports are retained server-side and distributed by email.
+Analysis & Reporting uses retained operational state to support review, historical analysis, portfolio and exposure analysis, trading analysis, and compliance reporting. For an Adara-originated order that successfully follows the controlled path, Adara can generate an order-level compliance PDF; a separate daily portfolio-level compliance PDF provides a scheduled portfolio view. Those reports are retained server-side and distributed by email.
 
 The architecture identifies these outputs without exposing actual reports, recipient addresses, distribution lists, real financial values, or the exact daily schedule.
 
@@ -100,7 +100,7 @@ Adara has two principal market-facing integration boundaries. Digital-asset exch
 
 A notification and email boundary carries notifications and compliance reports to their recipients. Separately, an external uptime-monitoring boundary observes the production web endpoint. These are public responsibility boundaries only: no provider names, recipient addresses, protocols, private endpoints, or detailed integration topology are disclosed.
 
-The OpenAI API provides the external AI-service boundary for AiAlly. The public architecture identifies Responses API interaction, remote MCP, optional File Search or RAG, and streaming at responsibility level without exposing endpoints, authorization, prompts, tool inventory, private documents, or configuration. This boundary describes the replacement validated in pre-production and does not present it as a current production deployment.
+The OpenAI API provides the external AI-service boundary for AiAlly. AiAlly sends the interaction through the Responses API, whose orchestration can invoke the remote MCP boundary and receive selected Adara capability results before the response is streamed back. Optional File Search or RAG can contribute product knowledge. This responsibility-level view exposes no endpoints, authorization, prompts, tool inventory, private documents, or configuration. It describes the replacement successfully validated in pre-production and does not present it as a current production deployment.
 
 ## Technology view
 

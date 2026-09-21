@@ -82,7 +82,7 @@ Strategies operate within the same broader platform as discretionary trading. Th
 
 ## Compliance
 
-The Compliance domain places controls in the pre-trade path. Applicable controls are evaluated before an order is submitted to an exchange, and an order that fails those controls is prevented from reaching the exchange. The same compliance layer applies to discretionary and automated trading.
+The Compliance domain places controls in the pre-trade path for Adara-originated orders. Applicable controls are evaluated before exchange submission, and an Adara-originated order that fails those controls is prevented from reaching the exchange. The same compliance layer applies to discretionary and automated origins.
 
 Representative capabilities include:
 
@@ -93,7 +93,7 @@ Representative capabilities include:
 - multi-channel early-warning and compliance notifications; and
 - order-level and daily portfolio-level compliance reporting.
 
-Adara produces a compliance PDF for an individual order and a daily compliance PDF at portfolio level. These reports are distributed by email and retained server-side. Together with the retained order state, they provide evidence that compliance is part of execution rather than only a post-trade reporting activity.
+For an Adara-originated order that successfully follows the controlled path, Adara can produce an order-level compliance PDF. A separate daily compliance PDF provides a scheduled portfolio-level view. These reports are distributed by email and retained server-side. Together with the retained order state, they provide evidence that compliance is part of execution rather than only a post-trade reporting activity.
 
 The public capability map does not include internal rule identifiers, thresholds, limits, formulas, real reports, distribution lists, or exact schedule times. See [Compliance and Audit](07-compliance-and-audit.md) for the dedicated public treatment of this domain.
 
@@ -121,13 +121,13 @@ Representative capabilities include:
 - users, roles, and access administration;
 - platform settings;
 - notification capabilities;
-- scheduled processing; and
+- scheduled processing;
 - external monitoring at a high level; and
 - AI-assisted natural-language interaction through AiAlly.
 
 These capabilities support the operating context around the functional workflow: access is administered, processing can be scheduled, notifications can be delivered, and the production web console can be observed through an external uptime-monitoring service. Credentials, API-key controls, IP restrictions, private endpoints, and other security-sensitive details remain outside the public scope.
 
-AiAlly is a cross-cutting user and operational interface over product knowledge and a curated set of Adara capabilities exposed through MCP tools. Its OpenAI Assistants API generation is a retired historical production implementation. The replacement based on the OpenAI Responses API and remote MCP has been successfully validated in pre-production, and production rollout is pending. AiAlly is separate from automated strategy execution and proprietary trading decisions; see [AI-Assisted Operations — AiAlly](11-ai-assisted-operations.md).
+AiAlly is a cross-cutting user and operational interface over product knowledge and a curated set of Adara capabilities exposed through MCP tools. Its OpenAI Assistants API generation is a historical production implementation that is currently unavailable following retirement of the upstream API. The replacement based on the OpenAI Responses API and remote MCP has been successfully validated in pre-production, and production rollout is pending. AiAlly is separate from automated strategy execution and proprietary trading decisions; see [AI-Assisted Operations — AiAlly](11-ai-assisted-operations.md).
 
 ## Cross-cutting workflow
 

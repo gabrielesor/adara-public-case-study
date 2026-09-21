@@ -73,7 +73,7 @@ This case study does not identify the reference currency, any intermediate conve
 
 Adara models exposure at account level and at aggregate portfolio level. Account-level exposure preserves the context of an individual represented account or holding, while portfolio-level exposure provides a broader view across the relevant account roles included in the operational portfolio.
 
-Exposure can also be considered alongside portfolio composition and asset classification. This supports analysis of how holdings are distributed and provides state that applicable compliance controls can consume before an order reaches an exchange. The compliance relationship is architectural: portfolio and order state provide inputs to evaluation, and failed applicable controls prevent submission.
+Exposure can also be considered alongside portfolio composition and asset classification. This supports analysis of how holdings are distributed and provides state that applicable compliance controls can consume before an Adara-originated order reaches an exchange. The compliance relationship is architectural: portfolio and order state provide inputs to evaluation, and failed applicable controls prevent submission of that order.
 
 The public model does not publish percentages, concentration thresholds, limits, formulas, or real exposure values. It documents the levels at which exposure is represented and the fact that the resulting state can support controls and analysis.
 
