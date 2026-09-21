@@ -110,7 +110,7 @@ This boundary is not a limitation of the architecture description; it is a preci
 
 Reliability evidence and scale evidence answer different questions. This page explains operational surfaces, monitoring scope, state retention, dependencies, and handling boundaries. [Operational Scale](10-operational-scale.md) separately addresses the approved quantitative evidence about production duration, order processing, and capability breadth.
 
-Keeping those topics separate prevents production volume or feature count from being interpreted as an availability measure. This page does not reproduce the future scale treatment.
+Keeping those topics separate prevents production volume or feature count from being interpreted as an availability measure. This page does not duplicate that quantitative scale treatment.
 
 ## Public boundaries
 
