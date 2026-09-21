@@ -122,9 +122,12 @@ Representative capabilities include:
 - platform settings;
 - notification capabilities;
 - scheduled processing; and
-- external monitoring at a high level.
+- external monitoring at a high level; and
+- AI-assisted natural-language interaction through AiAlly.
 
 These capabilities support the operating context around the functional workflow: access is administered, processing can be scheduled, notifications can be delivered, and the production web console can be observed through an external uptime-monitoring service. Credentials, API-key controls, IP restrictions, private endpoints, and other security-sensitive details remain outside the public scope.
+
+AiAlly is a cross-cutting user and operational interface over product knowledge and a curated set of Adara capabilities exposed through MCP tools. Its OpenAI Assistants API generation is a retired historical production implementation. The replacement based on the OpenAI Responses API and remote MCP has been successfully validated in pre-production, and production rollout is pending. AiAlly is separate from automated strategy execution and proprietary trading decisions; see [AI-Assisted Operations — AiAlly](11-ai-assisted-operations.md).
 
 ## Cross-cutting workflow
 

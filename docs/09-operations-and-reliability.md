@@ -90,6 +90,12 @@ Automated strategy execution has formed part of Adara's production use. It opera
 
 This fact establishes production use, not an availability measure for strategy execution. No strategy-operation percentage, complete execution-history claim, restart behavior, or incident assertion is made. The engineering lifecycle around hosted automation is described in [Strategy Platform](08-strategy-platform.md).
 
+## AI-assisted operations status
+
+AiAlly's first-generation OpenAI Assistants API integration was used in the production Adara environment and is now retired following retirement of the upstream API. It is a historical production implementation, not a currently operating capability.
+
+The replacement based on the OpenAI Responses API, remote MCP, and optional document retrieval has been successfully validated in pre-production. Production rollout is pending. Its status must therefore remain separate from both the legacy production history and the production status of the wider Adara platform. See [AI-Assisted Operations — AiAlly](11-ai-assisted-operations.md).
+
 ## Operational handling
 
 Production issues can require detection, investigation, validation of the affected scope, and controlled restoration of service. At public abstraction level, operational issues are handled through monitored investigation and controlled restoration procedures.

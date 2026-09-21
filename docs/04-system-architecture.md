@@ -1,6 +1,6 @@
 # System Architecture
 
-Adara is a modular trading and investment-operations platform that connects streaming market state, multi-account portfolio state, discretionary and automated trading, pre-trade compliance, exchange execution, persistent evidence, reporting, and operational administration. Its public architecture is best understood as a set of cooperating logical responsibilities rather than as an inventory of physical components.
+Adara is a modular trading and investment-operations platform that connects streaming market state, multi-account portfolio state, discretionary and automated trading, pre-trade compliance, exchange execution, persistent evidence, reporting, operational administration, and AI-assisted interaction. Its public architecture is best understood as a set of cooperating logical responsibilities rather than as an inventory of physical components.
 
 ## Scope
 
@@ -20,9 +20,9 @@ These concerns are separated as logical responsibilities while remaining integra
 
 The [System Context Diagram](../diagrams/system-context.md) shows Adara as one system boundary surrounded by the external actors and systems with which it interacts.
 
-Authorized operational users interact with the platform through its web-based operational console. Public market-data providers supply external market information. Digital-asset exchanges provide market and execution information and receive orders from Adara. The platform sends notifications and compliance reports to their intended recipients, while an external uptime-monitoring service observes the production web endpoint.
+Authorized operational users interact with the platform through its web-based operational console and can use AiAlly for natural-language interaction. Public market-data providers supply external market information. Digital-asset exchanges provide market and execution information and receive orders from Adara. The platform sends notifications and compliance reports to their intended recipients, while an external uptime-monitoring service observes the production web endpoint. The OpenAI API is an external service boundary for AiAlly interactions.
 
-The context view deliberately keeps the identities of organisations, exchanges, data providers, recipients, and monitoring providers out of scope. It also keeps MySQL inside the Adara boundary because relational persistence is an internal platform responsibility rather than an external actor. No network layout, named protocol, private endpoint, or AWS service is implied by the context diagram.
+The context view deliberately keeps the identities of organisations, exchanges, data providers, recipients, and monitoring providers out of scope. OpenAI is named only to identify the authorized AiAlly service boundary. MySQL remains inside the Adara boundary because relational persistence is an internal platform responsibility rather than an external actor. No network layout, private endpoint, authorization method, or AWS service is implied by the context diagram.
 
 ## Logical architecture
 
@@ -31,6 +31,12 @@ The [Logical Architecture Diagram](../diagrams/logical-architecture.md) groups t
 ### Web Console
 
 The Web Console is the web-based operational interface for authorized users. It provides access to operational interaction, discretionary trading, review, reporting, and administrative capabilities. The public architecture does not specify its frontend technology or its internal communication mechanisms.
+
+### AiAlly / AI-Assisted Interaction
+
+AiAlly provides a natural-language user and operational interface over product knowledge and selected Adara context or capabilities. The replacement architecture uses the OpenAI Responses API, remote MCP integration, optional File Search or RAG over product documentation, streaming responses, and operational tracing or diagnostics.
+
+MCP represents a standardized boundary for a curated set of Adara capabilities exposed through MCP tools; it is not a claim that AiAlly owns the underlying product responsibilities or bypasses their workflows. The first-generation OpenAI Assistants API integration is a retired historical production implementation. The Responses/MCP replacement has been successfully validated in pre-production, and production rollout is pending. See [AI-Assisted Operations — AiAlly](11-ai-assisted-operations.md).
 
 ### Market Data & Normalization
 
@@ -94,6 +100,8 @@ Adara has two principal market-facing integration boundaries. Digital-asset exch
 
 A notification and email boundary carries notifications and compliance reports to their recipients. Separately, an external uptime-monitoring boundary observes the production web endpoint. These are public responsibility boundaries only: no provider names, recipient addresses, protocols, private endpoints, or detailed integration topology are disclosed.
 
+The OpenAI API provides the external AI-service boundary for AiAlly. The public architecture identifies Responses API interaction, remote MCP, optional File Search or RAG, and streaming at responsibility level without exposing endpoints, authorization, prompts, tool inventory, private documents, or configuration. This boundary describes the replacement validated in pre-production and does not present it as a current production deployment.
+
 ## Technology view
 
 At a high level, Adara uses a Java backend, MySQL relational persistence, and deployment on AWS. The platform has a modular architecture, maintains persistent operational state, and uses streaming connectivity for external market information and exchange integration.
@@ -102,7 +110,7 @@ This technology view does not identify specific AWS services, module or JAR coun
 
 ## Deliberate public boundaries
 
-The public architecture does not expose Adara's proprietary source code, Java package structure, module or JAR inventory, database schema, process or threading model, deployment topology, network topology, private endpoints, credentials, security configuration, or proprietary strategy logic. It also avoids naming organisations, exchanges, market-data providers, monitoring providers, and report recipients.
+The public architecture does not expose Adara's proprietary source code, Java package structure, module or JAR inventory, database schema, process or threading model, deployment topology, network topology, private endpoints, credentials, security configuration, proprietary strategy logic, private AiAlly prompts, tool configuration, identifiers, or source documents. It also avoids naming organisations, exchanges, market-data providers, monitoring providers, and report recipients.
 
 Those omissions preserve the distinction between an inspectable technical case study and an implementation or operations manual. The material documents what the major responsibilities are, how they cooperate, and where external boundaries exist without publishing details that are unnecessary for understanding the architecture.
 

@@ -18,6 +18,8 @@ The platform ingests streaming data from external public market-data providers a
 
 Adara is therefore broader than a trading algorithm: it coordinates the operational path from changing market state and a trading decision through validation, compliance, execution, persistence, and subsequent analysis.
 
+AiAlly adds an AI-assisted natural-language interface for product knowledge and selected operational context. Its first OpenAI Assistants API integration is a retired historical production implementation; the replacement based on the OpenAI Responses API and remote MCP has been validated in pre-production, with production rollout pending. See [AI-Assisted Operations — AiAlly](docs/11-ai-assisted-operations.md).
+
 ## My role
 
 Gabriele Soranzo conceived Adara, designed its original architecture, and initially developed the platform end-to-end. A junior developer later contributed to selected development activities under his technical direction.
@@ -33,7 +35,7 @@ Adara's 50+ operational capabilities are organized into eight public domains:
 - **Strategies** — configuration, execution, and monitoring of automated trading strategies.
 - **Compliance** — pre-trade controls applied to discretionary and automated orders.
 - **Analysis & Reporting** — operational analytics, historical analysis, and compliance reporting.
-- **Administration & Operations** — capabilities supporting operation and administration of the platform.
+- **Administration & Operations** — capabilities supporting administration, scheduled operation, monitoring, notifications, and AI-assisted interaction.
 
 ## High-level architecture
 
@@ -75,6 +77,7 @@ At a high level, the platform uses a Java backend, MySQL relational persistence,
 8. [Understand the strategy-platform boundary](docs/08-strategy-platform.md)
 9. [Review production operations and reliability](docs/09-operations-and-reliability.md)
 10. [Examine disclosed operational scale](docs/10-operational-scale.md)
+11. [Understand AI-assisted operations with AiAlly](docs/11-ai-assisted-operations.md)
 
 ## Confidentiality and scope
 

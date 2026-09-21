@@ -77,6 +77,6 @@ Reading these pages together provides the intended interpretation: quantitative 
 
 All figures on this page are aggregate public facts. Exact internal counts, confidential financial and stakeholder information, real orders and positions, detailed infrastructure measurements, and proprietary strategy logic remain outside the case-study scope.
 
-The page closes the numbered documentation sequence with a bounded record of production duration, repeated order processing, and product breadth. It introduces no additional metric or claim beyond those approved facts.
+This page provides a bounded record of production duration, repeated order processing, and product breadth. It introduces no additional metric or claim beyond those approved facts.
 
-[← Previous](09-operations-and-reliability.md) | [Case Study Home](../README.md)
+[← Previous](09-operations-and-reliability.md) | [Case Study Home](../README.md) | [Next →](11-ai-assisted-operations.md)

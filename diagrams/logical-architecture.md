@@ -1,14 +1,17 @@
 # Logical Architecture Diagram
 
-This diagram presents Adara as interacting areas of logical responsibility. External market-data and exchange boundaries are shown only where they clarify the flow of market state, trading intent, execution information, and retained evidence.
+This diagram presents Adara as interacting areas of logical responsibility. External market-data, exchange, and AI-service boundaries are shown only where they clarify the flow of market state, trading intent, execution information, retained evidence, and AI-assisted interaction.
 
 ```mermaid
 flowchart TB
     providers["Public market-data providers"]
     exchanges["Digital-asset exchanges"]
+    aiService["OpenAI API"]
 
     subgraph adara["ADARA — Public logical responsibilities"]
         console["Web Console"]
+        aially["AiAlly / AI-Assisted Interaction"]
+        tools["Curated Adara Capabilities<br/>(MCP tool boundary)"]
         market["Market Data & Normalization"]
         portfolio["Portfolio & Valuation"]
         trading["Trading & Order Management"]
@@ -22,6 +25,9 @@ flowchart TB
         console -->|"Discretionary trading intent"| trading
         console -->|"Review and reporting"| analysis
         console -->|"Administration"| administration
+        console -->|"Natural-language interaction"| aially
+        aially -->|"MCP tool invocation"| tools
+        tools -->|"Selected capability context"| aially
         market -->|"Normalized market state"| portfolio
         market -->|"Real-time market state"| strategies
         market -->|"Trading context"| trading
@@ -42,8 +48,12 @@ flowchart TB
     exchanges -->|"Market data"| market
     exchanges -->|"Execution information"| trading
     trading -->|"Orders that pass applicable controls"| exchanges
+    aially -->|"Responses requests / application context"| aiService
+    aiService -->|"Streaming responses / tool requests"| aially
 ```
 
 The boxes in this diagram represent public logical responsibilities, not a one-to-one map of deployable components, processes, JARs, hosts, or AWS resources.
 
 The diagram is not a deployment, network, or source-code/module view. Multiple responsibilities may cooperate within the platform, and the drawing intentionally omits implementation-sensitive topology, interfaces, and security configuration.
+
+AiAlly is an AI-assisted user and operational interface, not algorithmic trading logic. Its MCP node represents a curated capability boundary without publishing tool names, count, permissions, or configuration. The OpenAI boundary represents the Responses/MCP replacement validated in pre-production; production rollout is pending. The retired Assistants API generation is historical production context and is not shown as a current runtime path.

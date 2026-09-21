@@ -64,6 +64,12 @@ The platform supports historical order analysis, operational analytics, and repo
 
 Administrative and operational capabilities support the continuing use of the platform in production. Detailed operating procedures, monitoring, recovery, and scheduled processing are addressed elsewhere in the case study.
 
+### AI-Assisted Operations
+
+AiAlly is Adara's AI-assisted user interface for natural-language interaction with product knowledge and selected operational information or capabilities. It is a cross-cutting interface rather than a separate trading domain, and it is not part of proprietary strategy decision logic.
+
+The first generation, based on the OpenAI Assistants API, was used in the production Adara environment and is now retired. Its replacement uses the OpenAI Responses API, remote MCP integration, and optional document retrieval; it has been successfully validated in pre-production, with production rollout pending. See [AI-Assisted Operations — AiAlly](11-ai-assisted-operations.md).
+
 ## Discretionary and automated trading
 
 Adara supports human-directed trading and automated strategies within the same broader operational platform. In both cases, trading intent proceeds through shared validation, compliance, order-management, execution-monitoring, persistence, and reporting concerns. This common operating context allows activity to be distinguished by provenance without creating a separate control model for automated orders.
@@ -90,6 +96,6 @@ This overview does not identify specific providers, exchanges, AWS services, com
 
 ## Public case-study boundaries
 
-This repository contains documentation, not Adara's proprietary application source code. It excludes organisation, fund, and stakeholder identities; real account identifiers; real orders, positions, balances, valuations, and transactions; exact compliance logic and limits; and proprietary strategy decision logic. Future visual material may use only synthetic or sanitized data.
+This repository contains documentation, not Adara's proprietary application source code. It excludes organisation, fund, and stakeholder identities; real account identifiers; real orders, positions, balances, valuations, and transactions; exact compliance logic and limits; proprietary strategy decision logic; and private AiAlly prompts, tool configuration, endpoints, and retrieved documents. Future visual material may use only synthetic or sanitized data.
 
 [← Previous](../README.md) | [Case Study Home](../README.md) | [Next →](02-role-and-history.md)
