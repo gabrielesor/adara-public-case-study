@@ -90,7 +90,7 @@ This distinction separates **controlled execution** from **observed external act
 
 Adara retains operational state related to the order lifecycle and provenance. That state supports historical review, reporting, analytics, and the association of compliance evidence with activity originated through the platform. The public view does not prescribe a database schema, event model, messaging architecture, transaction boundary, or storage topology.
 
-For Adara-originated orders, the platform generates order-level compliance evidence. An order-level compliance PDF is generated for an individual order, distributed by email, and retained server-side. The lifecycle view identifies this evidence boundary without exposing an actual report, recipient, email address, distribution list, or control value.
+For an Adara-originated order that passes applicable controls and proceeds through the controlled execution path, the platform can generate order-level compliance evidence. An order-level compliance PDF documents the evaluation associated with that order, is distributed by email, and is retained server-side. The lifecycle view identifies this evidence boundary without exposing an actual report, recipient, email address, distribution list, or control value. It does not claim that a rejected pre-trade attempt generates the same public order-level PDF, while making no statement about other internal traces.
 
 Externally originated activity can contribute to retained history and analytics, but its presence does not create evidence that Adara performed pre-trade controls before external submission. Provenance preserves this distinction when the combined operational history is reviewed.
 

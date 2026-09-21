@@ -30,7 +30,7 @@ flowchart TB
         confirmation --> submission
         submission --> submittedExchange
         submittedExchange --> monitoring
-        compliance --> evidence
+        submission -.->|"Associated order-level evidence"| evidence
     end
 
     subgraph external["Externally originated activity"]
@@ -53,6 +53,8 @@ flowchart TB
 ```
 
 The controlled pre-trade path applies to discretionary and automated orders originated through Adara. A failed applicable compliance result stops that path before exchange submission. Human confirmation is conditional and applies where required for discretionary activity; the diagram does not imply confirmation of each automated-strategy order.
+
+Order-level compliance PDF evidence is associated with an Adara-originated order that passes applicable controls and proceeds through the controlled execution path. The dotted relationship expresses that association without prescribing exact transactional sequencing; the rejected branch is not presented as producing the same public order-level PDF.
 
 Externally originated activity follows a separate observation path. It may be synchronized from an exchange and retained with provenance, but it is not represented as having passed through Adara's validation or pre-trade compliance controls before reaching the exchange.
 
