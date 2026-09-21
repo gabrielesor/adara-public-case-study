@@ -32,7 +32,7 @@ These terms identify responsibilities rather than exact internal states or trans
 
 Automated strategies may consume current or historical market information available through Adara. Current state can support continuing evaluation as market conditions change, while retained information can provide historical context where a strategy design requires it.
 
-Adara can also compute or use **derived indicators computed from market data**. Such values can contribute to algorithmic decision-making, but their presence does not reveal how a decision is formed. The public platform view establishes only that market information can be transformed into derived analytical inputs and made available within strategy execution.
+Adara can compute or use **derived indicators based on market data**. Such values can contribute to algorithmic decision-making, but their presence does not reveal how a decision is formed. The public platform view establishes only that market information can be transformed into derived analytical inputs and made available within strategy execution.
 
 No indicator is named here, and no calculation formula, period, threshold, combination, signal condition, or parameter is disclosed. The strategy's interpretation of market state remains inside the protected decision boundary. This separation demonstrates support for continuously evaluated market information while keeping trading logic out of the public case study.
 
@@ -84,7 +84,7 @@ This statement does not attribute all platform orders to automation or make clai
 
 ## Proprietary strategy boundary
 
-APCS documents the platform engineering required to host and operate algorithmic strategies within the wider Adara workflow. That includes lifecycle management, access to market state, creation of trading intent, integration with validation and compliance, order handling, monitoring, persistence, and analysis.
+This public case study documents the platform engineering required to host and operate algorithmic strategies within the wider Adara workflow. That includes lifecycle management, access to market state, creation of trading intent, integration with validation and compliance, order handling, monitoring, persistence, and analysis.
 
 Proprietary strategy decision logic is intentionally outside the public scope. The case study does not publish proprietary strategy names, exact indicators, formulas, parameters, decision rules, signal generation, or position-management algorithms. These omissions preserve the distinction between explaining a production strategy platform and disclosing the intellectual property of the strategies it hosts.
 
