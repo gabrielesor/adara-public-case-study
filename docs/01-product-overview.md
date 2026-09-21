@@ -90,6 +90,6 @@ This overview does not identify specific providers, exchanges, AWS services, com
 
 ## Public case-study boundaries
 
-This repository contains documentation, not Adara's proprietary application source code. It excludes organisation, fund, and stakeholder identities; real account identifiers; real orders, positions, balances, valuations, and transactions; exact compliance logic and limits; and proprietary strategy decision logic. Future visual material may use only synthetic or explicitly approved and sanitized data.
+This repository contains documentation, not Adara's proprietary application source code. It excludes organisation, fund, and stakeholder identities; real account identifiers; real orders, positions, balances, valuations, and transactions; exact compliance logic and limits; and proprietary strategy decision logic. Future visual material may use only synthetic or sanitized data.
 
 [← Previous](../README.md) | [Case Study Home](../README.md) | [Next →](02-role-and-history.md)

@@ -78,4 +78,4 @@ At a high level, the platform uses a Java backend, MySQL relational persistence,
 
 ## Confidentiality and scope
 
-This repository is a public technical case study. Proprietary application source code, organisation, fund, and stakeholder identities, real positions, balances, and transaction data are intentionally excluded. Proprietary trading decision logic is also outside the public scope. Any future screenshots will use synthetic or explicitly approved and sanitized data.
+This repository is a public technical case study. Proprietary application source code, organisation, fund, and stakeholder identities, real positions, balances, and transaction data are intentionally excluded. Proprietary trading decision logic is also outside the public scope. Any future screenshots will use synthetic or sanitized data.
