@@ -1,10 +1,10 @@
 # Order and Trading Lifecycle
 
-This page will document an approved public view of the order and trading lifecycle.
+This page will document the public view of the order and trading lifecycle.
 
 ## Scope
 
-_Approved order and trading information will be added in a later step._
+_Content is reserved for the dedicated public treatment of orders and trading._
 
 ## Order intent
 

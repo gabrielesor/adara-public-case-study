@@ -1,10 +1,10 @@
 # Operational Scale
 
-This page will present approved operational metrics and the boundaries governing their disclosure.
+This page will present public operational metrics and the boundaries governing their disclosure.
 
 ## Scope
 
-_Approved operational-scale information will be added in a later step._
+_Content is reserved for the dedicated public treatment of operational scale._
 
 ## Production duration
 

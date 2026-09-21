@@ -1,10 +1,10 @@
 # Strategy Platform
 
-This page will describe approved public aspects of the strategy platform while protecting proprietary logic.
+This page will describe public aspects of the strategy platform while protecting proprietary logic.
 
 ## Scope
 
-_Approved strategy-platform information will be added in a later step._
+_Content is reserved for the dedicated public treatment of the strategy platform._
 
 ## Strategy lifecycle
 

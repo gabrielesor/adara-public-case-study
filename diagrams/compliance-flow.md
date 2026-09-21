@@ -1,7 +1,7 @@
 # Compliance Flow Diagram
 
-This future diagram will present an approved public view of the compliance flow.
+This future diagram will present a public view of the compliance flow.
 
 ## Mermaid placeholder
 
-_Mermaid content will be added after the flow has been reviewed and approved for public disclosure._
+_Mermaid content is reserved for a public diagram that does not disclose proprietary implementation details._

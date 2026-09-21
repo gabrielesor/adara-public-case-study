@@ -1,10 +1,10 @@
 # System Architecture
 
-This page will present an approved, public-scope view of the system architecture.
+This page will present a public-scope view of the system architecture.
 
 ## Scope
 
-_Approved architecture information will be added in a later step._
+_Content is reserved for the dedicated public architecture treatment._
 
 ## System context
 

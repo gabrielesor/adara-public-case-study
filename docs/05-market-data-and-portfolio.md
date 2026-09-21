@@ -1,10 +1,10 @@
 # Market Data and Portfolio
 
-This page will describe approved aspects of market-data processing and portfolio state.
+This page will describe public aspects of market-data processing and portfolio state.
 
 ## Scope
 
-_Approved market-data and portfolio information will be added in a later step._
+_Content is reserved for the dedicated public treatment of market data and portfolio state._
 
 ## Market-data ingestion
 

@@ -1,10 +1,10 @@
 # Compliance and Audit
 
-This page will present approved information about compliance controls, evidence, and auditability.
+This page will present public information about compliance controls, evidence, and auditability.
 
 ## Scope
 
-_Approved compliance and audit information will be added in a later step._
+_Content is reserved for the dedicated public treatment of compliance and auditability._
 
 ## Pre-trade compliance
 

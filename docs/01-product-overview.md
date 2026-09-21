@@ -6,7 +6,7 @@ It has been used in production since June 2023 as internal operational tooling i
 
 ## Scope
 
-This page introduces the operational problem addressed by Adara, the platform's role, its main capability domains, and its public technical positioning. It uses only information approved for public disclosure.
+This page introduces the operational problem addressed by Adara, the platform's role, its main capability domains, and its public technical positioning. It remains at a public product level and contains no confidential operational data.
 
 Detailed architecture, compliance controls, order flows, operational procedures, and scale are reserved for their dedicated case-study pages. Proprietary source code, real portfolio and transaction data, stakeholder identities, detailed deployment topology, exact compliance formulas and limits, and proprietary strategy decision logic are outside this overview.
 
@@ -74,7 +74,7 @@ The public scope demonstrates that Adara can host and operate algorithmic strate
 
 Compliance in Adara is part of the pre-trade order path rather than only a post-trade reporting activity. Applicable controls are evaluated before exchange submission. If an order fails those controls, it does not reach the exchange.
 
-This placement matters operationally because the same enforcement layer applies whether the order originated from discretionary activity or an automated strategy. Normalized order values and portfolio state provide a common basis for evaluation, while retained reports provide order-level and daily portfolio-level evidence. The dedicated compliance page will examine this capability without publishing internal rule identifiers, thresholds, formulas, reports, or distribution details.
+This placement matters operationally because the same enforcement layer applies whether the order originated from discretionary activity or an automated strategy. Normalized order values and portfolio state provide a common basis for evaluation, while retained reports provide order-level and daily portfolio-level evidence. See [Compliance and Audit](07-compliance-and-audit.md) for the dedicated public treatment of this topic; internal rule identifiers, thresholds, formulas, reports, and distribution details remain outside its scope.
 
 ## Production use
 
@@ -84,12 +84,12 @@ The organisations, fund, and stakeholders involved are confidential and are not 
 
 ## Technical positioning
 
-At the approved public level, Adara uses a Java backend, MySQL relational persistence, and AWS deployment. Its architecture is modular, maintains persistent operational state, and uses streaming connectivity for market-data processing. It integrates with external public market-data providers and directly with digital-asset exchanges.
+At a high level, Adara uses a Java backend, MySQL relational persistence, and AWS deployment. Its architecture is modular, maintains persistent operational state, and uses streaming connectivity for market-data processing. It integrates with external public market-data providers and directly with digital-asset exchanges.
 
-This overview does not identify specific providers, exchanges, AWS services, component counts, or detailed topology. Those details are either deferred to later approved architecture material or remain outside the public scope.
+This overview does not identify specific providers, exchanges, AWS services, component counts, or detailed topology. These subjects are described at an appropriate level in the [public architecture documentation](04-system-architecture.md) or remain outside the public scope.
 
 ## Public case-study boundaries
 
-This repository contains documentation, not Adara's proprietary application source code. It excludes customer, fund, and stakeholder identities; real account identifiers; real orders, positions, balances, valuations, and transactions; exact compliance logic and limits; and proprietary strategy decision logic. Future visual material may use only synthetic or explicitly approved and sanitized data.
+This repository contains documentation, not Adara's proprietary application source code. It excludes organisation, fund, and stakeholder identities; real account identifiers; real orders, positions, balances, valuations, and transactions; exact compliance logic and limits; and proprietary strategy decision logic. Future visual material may use only synthetic or explicitly approved and sanitized data.
 
 [← Previous](../README.md) | [Case Study Home](../README.md) | [Next →](02-role-and-history.md)

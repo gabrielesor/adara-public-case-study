@@ -37,7 +37,7 @@ Adara's 50+ operational capabilities are organized into eight public domains:
 
 ## High-level architecture
 
-Adara uses a modular Java backend, MySQL relational persistence, and AWS deployment. Streaming connectivity integrates external market-data providers and digital-asset exchanges, while persistent operational state supports the platform's workflows. The public architecture will be documented in [System Architecture](docs/04-system-architecture.md); detailed topology is outside this step.
+Adara uses a modular Java backend, MySQL relational persistence, and AWS deployment. Streaming connectivity integrates external market-data providers and digital-asset exchanges, while persistent operational state supports the platform's workflows. See [System Architecture](docs/04-system-architecture.md) for the public architecture view; detailed deployment topology is intentionally outside the scope of this case study.
 
 ## A production order lifecycle
 
@@ -61,7 +61,7 @@ See [Operations and Reliability](docs/09-operations-and-reliability.md) and [Ope
 
 ## Technology overview
 
-The approved technology-level view comprises a Java backend, MySQL relational persistence, AWS deployment, modular architecture, streaming connectivity, and persistent operational state. Low-level deployment topology and specific AWS services are intentionally deferred.
+At a high level, the platform uses a Java backend, MySQL relational persistence, AWS deployment, modular architecture, streaming connectivity, and persistent operational state. Low-level deployment topology and specific AWS services are intentionally outside the public scope.
 
 ## Explore the case study
 
@@ -78,4 +78,4 @@ The approved technology-level view comprises a Java backend, MySQL relational pe
 
 ## Confidentiality and scope
 
-This repository is a public technical case study. Proprietary application source code, customer, fund, and stakeholder identities, real positions, balances, and transaction data are intentionally excluded. Proprietary trading decision logic is also outside the public scope. Any future screenshots will use synthetic or explicitly approved and sanitized data.
+This repository is a public technical case study. Proprietary application source code, organisation, fund, and stakeholder identities, real positions, balances, and transaction data are intentionally excluded. Proprietary trading decision logic is also outside the public scope. Any future screenshots will use synthetic or explicitly approved and sanitized data.

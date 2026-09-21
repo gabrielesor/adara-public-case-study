@@ -1,10 +1,10 @@
 # Operations and Reliability
 
-This page will describe approved public aspects of operating Adara in production.
+This page will describe public aspects of operating Adara in production.
 
 ## Scope
 
-_Approved operations and reliability information will be added in a later step._
+_Content is reserved for the dedicated public treatment of operations and reliability._
 
 ## Production operation
 
