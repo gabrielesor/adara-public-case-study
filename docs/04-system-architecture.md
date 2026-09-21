@@ -30,7 +30,7 @@ The [Logical Architecture Diagram](../diagrams/logical-architecture.md) groups t
 
 ### Web Console
 
-The Web Console is the public operational interface for authorized users. It provides access to operational interaction, discretionary trading, review, reporting, and administrative capabilities. The public architecture does not specify its frontend technology or its internal communication mechanisms.
+The Web Console is the web-based operational interface for authorized users. It provides access to operational interaction, discretionary trading, review, reporting, and administrative capabilities. The public architecture does not specify its frontend technology or its internal communication mechanisms.
 
 ### Market Data & Normalization
 
