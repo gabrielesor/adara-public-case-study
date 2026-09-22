@@ -1,61 +1,51 @@
 # Order Lifecycle Diagram
 
-This diagram separates orders originated through Adara's controlled execution path from exchange activity that originated outside Adara and is later synchronized or observed.
-
 ```mermaid
 flowchart TB
     subgraph controlled["Adara-originated controlled execution"]
-        direction TB
-        human["Discretionary / human-directed trading"]
+        human["Discretionary / human-directed"]
         automated["Automated strategy"]
         intent["Trading intent"]
-        validation["Input and context validation"]
+        validation["Validation"]
         compliance["Pre-trade compliance"]
-        stopped["Stopped before exchange submission"]
-        continuation["Eligible to continue"]
-        confirmation["Human confirmation<br/>where applicable"]
+        stopped["Stopped before exchange"]
+        confirmation["Human confirmation where applicable"]
         submission["Exchange submission"]
-        submittedExchange["Digital-asset exchange boundary"]
-        monitoring["Monitoring / execution state"]
-        evidence["Order-level compliance evidence<br/>(Adara-originated orders)"]
+        monitoring["Execution / fill monitoring"]
 
         human --> intent
         automated --> intent
         intent --> validation
         validation --> compliance
         compliance -->|"FAIL"| stopped
-        compliance -->|"PASS"| continuation
-        continuation -->|"Confirmation not applicable"| submission
-        continuation -->|"Discretionary confirmation where applicable"| confirmation
+        compliance -->|"PASS / automated"| submission
+        compliance -->|"PASS / discretionary where required"| confirmation
         confirmation --> submission
-        submission --> submittedExchange
-        submittedExchange --> monitoring
-        submission -.->|"Associated order-level evidence"| evidence
+        submission --> monitoring
     end
 
     subgraph external["Externally originated activity"]
-        direction TB
-        externalActivity["External order activity"]
-        observedExchange["Digital-asset exchange boundary"]
-        synchronization["Synchronization / observation"]
-
-        externalActivity --> observedExchange
-        observedExchange --> synchronization
+        externalOrder["External exchange order"]
+        sync["Synchronization / observation"]
+        externalOrder --> sync
     end
 
+    context["Retained decision context<br/>origin + portfolio/account state + strategy/compliance context"]
     history["Persistent order history & provenance"]
-    outputs["Historical review / reporting / analytics"]
+    evidence["Order-level compliance evidence"]
+    review["Historical review / reporting / analytics"]
 
+    intent -.->|"decision context begins"| context
     monitoring --> history
-    synchronization --> history
-    evidence --> outputs
-    history --> outputs
+    monitoring --> context
+    compliance -->|"evaluation context"| context
+    sync --> history
+    context --> history
+    submission -.-> evidence
+    evidence --> review
+    history --> review
 ```
 
-The controlled pre-trade path applies to discretionary and automated orders originated through Adara. A failed applicable compliance result stops that path before exchange submission. Human confirmation is conditional and applies where required for discretionary activity; the diagram does not imply confirmation of each automated-strategy order.
+The diagram distinguishes controlled Adara-originated execution from externally originated activity.
 
-Order-level compliance PDF evidence is associated with an Adara-originated order that passes applicable controls and proceeds through the controlled execution path. The dotted relationship expresses that association without prescribing exact transactional sequencing; the rejected branch is not presented as producing the same public order-level PDF.
-
-Externally originated activity follows a separate observation path. It may be synchronized from an exchange and retained with provenance, but it is not represented as having passed through Adara's validation or pre-trade compliance controls before reaching the exchange.
-
-This is a responsibility and lifecycle view, not an exact implementation state machine. The repeated exchange-boundary labels distinguish submitted and externally originated activity without identifying different venues or prescribing deployment components.
+The retained decision-context node is deliberately separate from the final order record: the architectural objective is to preserve enough historical state to explain why an order was allowed and, for automated activity, why the strategy acted.

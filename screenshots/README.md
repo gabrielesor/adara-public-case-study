@@ -1,9 +1,18 @@
-# Screenshot Publication Policy
+# Screenshot and Historical Artifact Publication Policy
 
-Only screenshots containing synthetic or properly sanitized data may be published in this directory.
+Only screenshots and historical artifacts containing synthetic, sanitized, or otherwise non-sensitive information may be published in this directory.
 
-Published screenshots must not expose real organisation, fund, or stakeholder identities; account or order identifiers; positions; balances; or transaction data.
+Material must not expose:
 
-AiAlly screenshots must also exclude private prompts, private operational data, MCP configuration, private document content, and user or conversation identifiers.
+- real organisation, fund, or stakeholder identities;
+- private account or order identifiers;
+- positions, balances, or transaction-level financial data;
+- credentials, private endpoints, or security configuration;
+- proprietary strategy logic; or
+- private AiAlly prompts, MCP configuration, user identifiers, or conversation data.
 
-No images are included at this stage.
+## Planned material
+
+Before public release, this directory is expected to include the **early handwritten Adara architecture note** referenced from the *Robustness by design* section, after a final sensitivity review.
+
+Production-console screenshots may be added later using synthetic or properly sanitized data. Their absence does not block publication of the technical case study.

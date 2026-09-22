@@ -1,51 +1,84 @@
 # Product Ownership and Engineering Role
 
-Adara is a proprietary software product conceived, originally architected, and initially implemented end-to-end by Gabriele Soranzo. The engineering responsibility covered an integrated trading and investment-operations platform rather than only an individual trading algorithm. The product has subsequently operated in a real investment-management environment, with selected development work later contributed by a junior developer under his technical direction.
+This page is intentionally written in the first person because Adara is both a software product and a record of my own architecture and engineering work.
 
-## Scope
+## What I owned
 
-This page describes the ownership of Adara, responsibility for its architecture and implementation, the subsequent evolution of the development team, and the product's production history. It distinguishes the software product and its engineering history from the confidential organisation, fund, and stakeholders involved in its operational use.
+I conceived Adara, designed its original architecture, and initially implemented the platform end-to-end.
 
-The page does not present employment history, investment performance, or the identity of the operating environment. It also does not attribute investment-management responsibilities that are not part of the documented technical role.
+That work covered the system as an integrated whole:
 
-## Product ownership
+- Java backend architecture and implementation;
+- MySQL relational data model;
+- direct exchange API and streaming/WebSocket integration;
+- tick-level market-data ingestion and normalization;
+- multi-account portfolio, valuation, and exposure model;
+- discretionary and automated trading;
+- strategy lifecycle and execution infrastructure;
+- order creation, submission, synchronization, monitoring, fills, fees, and history;
+- pre-trade compliance and retained compliance evidence;
+- reporting, notifications, administration, and scheduled processing;
+- AWS deployment and production operation; and
+- later AI/MCP integration through AiAlly.
 
-Adara is proprietary software owned by Gabriele Soranzo. He conceived the product and defined it as a platform for coordinating trading and investment-operations concerns within one operational system.
+The important part is not that I touched many modules. It is that I owned the architectural boundaries between them: how market state becomes strategy/trader context, how intent becomes a controlled order, how portfolio state feeds compliance, how exchange execution is reconciled back into persistent history, and how the system remains explainable after the immediate trade has disappeared into history.
 
-Ownership of the software is distinct from the organisations and stakeholders associated with its production use. This case study makes no statement about future ownership arrangements or corporate structures, and it does not identify the fund or operational participants.
+## From architecture to production
 
-## Architecture and implementation
+Adara was not handed off after a prototype. I took the original architecture through implementation and into production, where it has operated since June 2023.
 
-Gabriele designed Adara's original architecture and initially developed the platform end-to-end. That responsibility covered the system as an integrated whole: real-time market-data processing, persistent portfolio and account state, discretionary and automated trading, direct digital-asset exchange integration, order lifecycle management, pre-trade compliance enforcement, reporting, analytics, administration, and production operation.
+The system has processed more than 5,000 production orders and more than €18M in aggregate traded volume through Adara-supported workflows. One retained nine-month market-data corpus contains more than 120 million tick-level observations.
 
-The breadth of the work matters because these concerns do not operate independently. Market data must be normalized before it can support portfolio valuation and trading. Trading intent must pass through validation and compliance before exchange submission. Execution state must be monitored and persisted so that it can support reporting and historical analysis. Designing and implementing the original platform therefore required responsibility for the boundaries and interactions between these functional areas, not only for isolated functions within them.
-
-The public case study describes that responsibility at product and architecture level. It does not publish proprietary source code, detailed topology, private endpoints, credentials, exact compliance rules, or the decision logic used by proprietary trading strategies.
+These figures are included as engineering evidence: repeated production execution, sustained real-time data handling, and a system that has had to survive normal operational reality rather than only a controlled demonstration.
 
 ## Team evolution
 
-A junior developer later contributed to selected development activities under Gabriele Soranzo's technical direction. The contribution is stated at this level because dates, percentages, and module assignments are not part of the public record established for this case study.
+A junior developer later contributed to selected development activities under my technical direction, especially user-interface work.
 
-Gabriele's role in those selected activities was technical direction. This description neither minimizes nor inflates the junior developer's work; it records the division of responsibility that can be stated publicly.
+I retained architecture responsibility and the integration view of the product. The division of work is therefore best described as: **I designed and substantially built the platform; later development expanded through a junior contributor working under my technical direction.**
 
-## Production history
+This case study does not minimize that contributor's work, but it also does not dilute ownership of the original architecture and the end-to-end system.
 
-Adara has been in production since June 2023. It has been used as internal operational tooling in a real investment-management environment and has processed more than 5,000 production orders. The platform contains more than 50 operational capabilities across market data, portfolio management, trading, orders, strategies, compliance, analysis and reporting, and administration and operations.
+## Source provenance
 
-These figures describe the software's production use and functional breadth. They do not disclose financial scale, investment performance, or an availability percentage. The identities of the organisations, fund, and stakeholders involved remain confidential.
+The repository you are reading is a recent public case-study repository. It should not be mistaken for the age of the product.
 
-The production history is separate from the question of product ownership. Adara remains Gabriele Soranzo's proprietary software; the investment-management environment in which it has been used is not identified or characterized as owning the product.
+The proprietary Adara source repository remains private. As of September 2026, it has a **five-year development history and 538 commits**. The private history is retained because the codebase contains proprietary strategy logic, security-sensitive configuration, and production implementation detail that should not be published merely to demonstrate authorship.
 
-## Responsibility boundaries
+The public case study therefore exposes architecture, decisions, operating evidence, trade-offs, and lessons learned while keeping the application source private.
 
-This case study documents Adara as a software product and describes Gabriele's technical role in conceiving, architecting, implementing, and directing development of that product. It does not state that he held a fund-management role, and it does not document investment decisions or investment outcomes.
+## AI authorship disclosure
 
-The public boundary excludes the fund's identity, stakeholder identities, confidential operational data, real accounts and orders, real positions and balances, and proprietary strategy logic. Where operational scale is stated, it is limited to the production duration, processed-order count, and capability count that can be disclosed publicly.
+Most of Adara's core platform predates generative-AI-assisted development.
 
-## Why the case study is public
+The trading, market-data, portfolio, order-management, compliance, persistence, operational, and original strategy-hosting architecture was designed and implemented without generative AI being the development model behind the product.
 
-The case study provides an inspectable account of the product's technical scope and the engineering responsibility behind it. It allows readers to examine the platform's capabilities, public architecture, operational workflows, and production context without access to the proprietary application source code or confidential production material.
+Generative AI entered the project later in three bounded ways:
 
-This separation is deliberate: the engineering work can be described through system responsibilities, interfaces, controls, and operational evidence while sensitive identities, data, and trading logic remain outside the public record.
+1. **AiAlly v2** — I used AI-assisted engineering while designing and implementing the OpenAI Responses API / remote MCP / document-retrieval generation.
+2. **Junior development assistance** — the junior contributor used AI as a coding aid, particularly for portions of the UI.
+3. **This public case study** — AI has been used to help structure, challenge, edit, and refine the documentation.
+
+That distinction matters. Adara's core architecture is not a product generated retrospectively from an AI prompt; the AI layer and AI-assisted development came later.
+
+## Architecture as an operating responsibility
+
+I view the architecture of Adara as more than a component diagram. Three examples capture that responsibility:
+
+- **Robustness by design:** external systems and connections can fail, so recovery and operational boundaries must be designed rather than hoped for.
+- **Tick-driven by design:** if a strategy reacts to each price movement, the data path has to be built for that event model from the start.
+- **Decision provenance by design:** if an automated order is questioned years later, the system should retain enough historical state to explain what happened and why.
+
+The public case study is organized around those decisions because they are more representative of my work as an architect than a list of framework names.
+
+## A real-system lesson: not every path aged equally
+
+The tick-processing path was designed with strong latency awareness. The V1 order path accumulated synchronous work over time, including report generation and notification side effects, and observed end-to-end order creation could reach roughly 2–8 seconds.
+
+I include that fact because architecture work also means recognizing where a successful production system has accumulated debt. Adara V2 is being designed with a much stricter separation between fast decision/execution paths and asynchronous audit, reporting, and notification work.
+
+## Public boundary
+
+This page documents engineering ownership, not investment-management responsibility. It does not identify the fund or confidential stakeholders and does not publish real account identifiers, positions, balances, credentials, proprietary strategy algorithms, or security-sensitive implementation detail.
 
 [← Previous](01-product-overview.md) | [Case Study Home](../README.md) | [Next →](03-capability-map.md)

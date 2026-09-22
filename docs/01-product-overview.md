@@ -1,101 +1,78 @@
 # Product Overview
 
-Adara is a proprietary trading and investment-operations platform owned by Gabriele Soranzo. It coordinates market data, portfolio and account state, discretionary and automated trading, exchange execution, order management, pre-trade compliance, reporting, analytics, and administration within a single operational environment.
+Adara is a proprietary production platform for digital-asset trading and investment operations. It coordinates live market data, portfolio and account state, discretionary and automated trading, direct exchange execution, order management, pre-trade compliance, reporting, analytics, administration, and monitoring in one operating environment.
 
-It has been used in production since June 2023 as internal operational tooling in a real investment-management environment. This context matters to the case study: Adara is not only an isolated trading algorithm, but a platform that supports the broader path from live market state and trading intent to controlled execution and retained operational evidence.
+It has been used in production since June 2023. This is important context: Adara is not a design exercise or an isolated algorithm. It is a long-running system that has processed real orders through direct exchange integrations and retained the operational evidence needed to review those activities later.
 
-## Scope
+## The problem Adara solves
 
-This page introduces the operational problem addressed by Adara, the platform's role, its main capability domains, and its public technical positioning. It remains at a public product level and contains no confidential operational data.
+A real trading operation has to coordinate several forms of state that change at very different speeds.
 
-Detailed architecture, compliance controls, order flows, operational procedures, and scale are reserved for their dedicated case-study pages. Proprietary source code, real portfolio and transaction data, stakeholder identities, detailed deployment topology, exact compliance formulas and limits, and proprietary strategy decision logic are outside this overview.
+Market prices can change many times per second. Exchange APIs expose heterogeneous identifiers, constraints, and failure modes. Portfolio state may be distributed across many accounts. Human traders and automated strategies can both create trading intent. Before an Adara-originated order reaches an exchange, the system must validate it and apply applicable compliance controls. After submission, it must monitor execution, retain fills and fees, preserve origin, and keep enough historical context to understand the order later.
 
-## The operational problem
+Adara was built to connect these responsibilities rather than implement them as unrelated scripts.
 
-A trading operation must coordinate several concerns that change at different rates and originate in different systems. External market data changes continuously. Exchanges expose heterogeneous interfaces and exchange-specific asset identifiers and capabilities. Portfolio state must reflect balances, valuations, account exposure, and aggregate portfolio exposure. Human traders and automated strategies may both produce trading intent.
+## Three founding architectural principles
 
-An order cannot be treated as a single submission action. Before submission, it requires validation and applicable compliance evaluation. After submission, the operation must monitor its status, track execution and fills, handle cancellation and fees, and preserve its provenance. The resulting state must remain available for historical analysis, reporting, and operational review.
+### Robustness by design
 
-These concerns are connected. Market state informs trading decisions and valuation. Orders affect account and portfolio state. Exposure values are inputs to compliance controls. Exchange responses affect the order lifecycle. Reporting depends on persistent, traceable operational data. A platform serving this workflow therefore needs to connect these responsibilities without reducing the operation to the decision logic of an individual strategy.
+External exchanges, market-data feeds, networks, application processes, and notification channels are treated as failure-prone boundaries. The architecture therefore emphasizes state retention, separation of operational surfaces, monitoring, reconnect/recovery behavior, and the ability to continue or restore unattended operation without relying on a user keeping a browser session alive.
 
-## Adara's role
+Robustness was present in the early architecture work before production and remains a first-class concern. See [Operations and Reliability](09-operations-and-reliability.md).
 
-Adara acts as the integration point for those operational concerns. It ingests real-time and streaming data from external public market-data providers and integrates directly with digital-asset exchanges. Exchange-specific asset identifiers are normalized into a canonical internal model, while exchange-specific capabilities remain available where required.
+### Tick-driven by design
 
-The platform maintains multi-account portfolio state, including balances and valuations, and models exposure at both account and portfolio level. Heterogeneous trading values are normalized into a common reference currency for controls and reporting. Assets may also be classified into three dynamically derived tiers based on market ranking and asset categories, with specific classification treatment for stablecoins and fiat currencies. The precise algorithms, lists, and conversion details are intentionally not public.
+Adara's real-time market path was designed around incoming price updates rather than fixed-interval candles. A *tick* in this case study means an individual pair-price update received from an exchange or market-data integration.
 
-Adara connects that state to discretionary trading, automated strategy execution, order lifecycle management, compliance, reporting, analytics, and administrative operation. This makes it an operational platform rather than a stand-alone trading bot: strategy execution is one capability within a broader controlled workflow.
+That decision shaped the ingestion and in-memory processing model because some automated strategies needed to react to price movement as it arrived. One retained nine-month corpus contains **120M+ tick-level observations**. The figure is intentionally described as a retained corpus, not as a lifetime count of every tick handled by the live system.
 
-## Core capability domains
+See [Market Data and Portfolio](05-market-data-and-portfolio.md).
 
-The public capability map groups more than 50 operational capabilities into eight domains:
+### Decision provenance by design
 
-### Market Data
+A historical order should not become an unexplained database row. Adara retains origin and time-relevant operational context so that a later review can reconstruct why a controlled order was allowed and, for automated activity, why the strategy generated it.
 
-Real-time and streaming ingestion brings external public market data into the platform. Normalization maps exchange-specific asset identifiers to a canonical internal model so that market state can be used consistently across other capabilities.
+The design links orders to retained account/portfolio state, strategy origin and configuration context, and compliance evidence. This enables practical reconstructability even years after the event.
 
-### Portfolio
+See [Order and Trading Lifecycle](06-order-and-trading-lifecycle.md) and [Compliance and Audit](07-compliance-and-audit.md).
 
-The portfolio domain manages multiple accounts and their combined state. It covers balances, valuations, account-level exposure, portfolio-level exposure, and the normalization of heterogeneous values into a common reference currency for control and reporting purposes.
+## Operational model
 
-### Trading
+Adara integrates directly with digital-asset exchanges, including Kraken and Binance, and with public market-data sources. External asset identifiers are normalized into a canonical internal representation so the rest of the platform can reason consistently about assets, pairs, balances, valuations, orders, and reports.
 
-Trading capabilities support both discretionary, human-directed activity and automated execution. Direct digital-asset exchange integrations provide the execution connection while allowing the platform to support capabilities specific to individual exchanges.
+The platform has supported up to roughly fifteen represented accounts across exchange and portfolio roles. Continuously rebuilding aggregate fund state by synchronously querying every remote account would make dashboard and control paths unnecessarily dependent on external latency and availability.
 
-### Orders
+Adara therefore uses an operational snapshot model: an independent process periodically materializes aggregate portfolio state into persistent and in-memory form. Dashboard and applicable compliance reads can use that state efficiently, while a configurable live-refresh path can bypass the snapshot and reacquire current external state when freshness takes priority.
 
-Order management covers validation, submission, monitoring, execution and fill tracking, cancellation, fees, history, and provenance. The platform can distinguish discretionary, automated, and externally originated trading activity without exposing real identifiers, quantities, prices, or account information in this case study.
+## Trading and execution
 
-### Strategies
+Human-directed trading and automated strategies use the same broader operational infrastructure. Both create Adara-originated intent that can proceed through validation, pre-trade compliance, exchange submission, execution monitoring, persistence, and analysis.
 
-Adara hosts automated trading strategies and supports their configuration, execution, and monitoring. This includes support for automated grid-style execution, and algorithmic strategies may operate on real-time market state. The indicators, parameters, formulas, decision logic, and detailed mechanics of proprietary strategies are not part of the public case study.
+Automated strategies consume real-time market state and can maintain their own lifecycle and configuration. Proprietary decision logic remains outside this public case study; what is public is the surrounding engineering required to run strategies safely inside a production platform.
 
-### Compliance
+## Compliance as execution control
 
-For Adara-originated orders, compliance controls are evaluated before exchange submission. Applicable categories include trade size, account exposure, portfolio exposure, and portfolio concentration. An Adara-originated order that fails applicable controls is prevented from reaching the exchange, and the same compliance layer applies to discretionary and automated origins.
+Compliance is not only a report produced after trading. Applicable controls are evaluated before Adara-originated exchange submission. Controls can use normalized order value, account exposure, portfolio exposure, concentration, and other retained operating context.
 
-Order values are normalized into a common reference currency for evaluation. Multi-channel early-warning and compliance-notification mechanisms support the process. For an Adara-originated order that successfully follows the controlled path, Adara can produce an order-level compliance PDF; a separate daily portfolio-level compliance PDF provides a scheduled portfolio view. Reports are distributed by email and retained server-side.
+A failed applicable control stops the Adara-originated order before the exchange boundary. Successful controlled orders can be associated with retained order-level compliance evidence, while scheduled portfolio-level reporting supplies a separate historical view.
 
-### Analysis & Reporting
+## Production evidence
 
-The platform supports historical order analysis, operational analytics, and reporting based on retained operational state. Compliance evidence includes both individual-order and daily portfolio-level reports.
+As of September 2026, the public case study uses the following aggregate evidence:
 
-### Administration & Operations
+- production operation since **June 2023**;
+- **5,000+** production orders processed;
+- **€18M+** aggregate traded volume through Adara-supported workflows;
+- **120M+** retained tick-level observations in one nine-month corpus;
+- **50+** operational capabilities; and
+- a private source history spanning **five years and 538 commits**.
 
-Administrative and operational capabilities support the continuing use of the platform in production. Detailed operating procedures, monitoring, recovery, and scheduled processing are addressed elsewhere in the case study.
-
-### AI-Assisted Operations
-
-AiAlly is Adara's AI-assisted user interface for natural-language interaction with product knowledge and selected operational information or capabilities. It is a cross-cutting interface rather than a separate trading domain, and it is not part of proprietary strategy decision logic.
-
-The first generation, based on the OpenAI Assistants API, is a historical production implementation that is currently unavailable following retirement of the upstream API. Its replacement uses the OpenAI Responses API, remote MCP integration, and optional document retrieval; it has been successfully validated in pre-production, with production rollout pending. See [AI-Assisted Operations — AiAlly](11-ai-assisted-operations.md).
-
-## Discretionary and automated trading
-
-Adara supports human-directed trading and automated strategies within the same broader operational platform. In both cases, trading intent proceeds through shared validation, compliance, order-management, execution-monitoring, persistence, and reporting concerns. This common operating context allows activity to be distinguished by provenance without creating a separate control model for automated orders.
-
-The public scope demonstrates that Adara can host and operate algorithmic strategies, including grid-style execution that can act on real-time market state. It does not explain how proprietary strategies generate decisions.
-
-## Compliance as part of execution
-
-For Adara-originated orders, compliance is part of the pre-trade path rather than only a post-trade reporting activity. Applicable controls are evaluated before exchange submission. If an order fails those controls, it does not reach the exchange.
-
-This placement matters operationally because the same enforcement layer applies whether the order originated from discretionary activity or an automated strategy. Normalized order values and portfolio state provide a common basis for evaluation, while retained reports provide order-level and daily portfolio-level evidence. See [Compliance and Audit](07-compliance-and-audit.md) for the dedicated public treatment of this topic; internal rule identifiers, thresholds, formulas, reports, and distribution details remain outside its scope.
-
-## Production use
-
-Adara has operated in production since June 2023. It has processed more than 5,000 production orders and contains more than 50 operational capabilities. It has been used as internal operational tooling in a real investment-management environment.
-
-The organisations, fund, and stakeholders involved are confidential and are not identified in this repository. Financial metrics and real operational records are not disclosed.
+These figures establish production use and engineering scale. They are not claims about investment performance, profitability, availability percentage, or a lifetime tick total.
 
 ## Technical positioning
 
-At a high level, Adara uses a Java backend, MySQL relational persistence, and AWS deployment. Its architecture is modular, maintains persistent operational state, and uses streaming connectivity for market-data processing. It integrates with external public market-data providers and directly with digital-asset exchanges.
+At a high level, Adara uses a modular Java backend, MySQL relational persistence, AWS deployment, streaming/WebSocket integration, in-memory state, scheduled/background processing, and direct exchange APIs.
 
-This overview does not identify specific providers, exchanges, AWS services, component counts, or detailed topology. These subjects are described at an appropriate level in the [public architecture documentation](04-system-architecture.md) or remain outside the public scope.
-
-## Public case-study boundaries
-
-This repository contains documentation, not Adara's proprietary application source code. It excludes organisation, fund, and stakeholder identities; real account identifiers; real orders, positions, balances, valuations, and transactions; exact compliance logic and limits; proprietary strategy decision logic; and private AiAlly prompts, tool configuration, endpoints, and retrieved documents. Published visual material may use only synthetic or properly sanitized data.
+The public architecture intentionally omits credentials, private endpoints, exact infrastructure topology, proprietary strategy algorithms, and real financial/account data.
 
 [← Previous](../README.md) | [Case Study Home](../README.md) | [Next →](02-role-and-history.md)
