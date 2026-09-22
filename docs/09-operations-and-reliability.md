@@ -18,11 +18,13 @@ The design approach was therefore:
 
 ## Historical architecture note
 
-An early handwritten architecture note was created while Adara was still being shaped specifically to reason about robustness and failure handling. It belongs in this case study because it shows that robustness was a **founding design concern**, not a production story added later.
+An early handwritten architecture note was created in **June 2023**, while Adara was being shaped specifically around robustness and failure handling.
 
-> **Publication artifact pending:** the original handwritten note will be inserted here before this repository is made public.
+![Early handwritten Adara architecture note — June 2023](../screenshots/adara-architecture-handwritten-june-2023.jpg)
 
-The note will be published only after verifying that it contains no sensitive identifiers or configuration.
+*Early Adara architecture note, June 2023. The sketch already separates multiple resilience levels: a primary and secondary socket inside the engine JVM, a controller/cache layer, a second node/JVM, and external monitoring. The handwritten “reaction time” figures describe the intended detection/reaction cadence at each layer; the 120-second external-monitoring value is a polling interval, not a claim that complete service restoration always occurred within two minutes.*
+
+This artifact is included because it shows that **robustness was a founding architectural concern before the production system existed**, rather than a reliability narrative added retrospectively.
 
 ## Production operation
 
