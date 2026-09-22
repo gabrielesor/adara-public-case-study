@@ -27,9 +27,9 @@ The important part is not that I touched many modules. It is that I owned the ar
 
 Adara was not handed off after a prototype. I took the original architecture through implementation and into production, where it has operated since June 2023.
 
-The system has processed more than 5,000 production orders and more than €18M in aggregate traded volume through Adara-supported workflows. One retained nine-month market-data corpus contains more than 120 million tick-level observations.
+The system has processed more than 5,000 production orders. One retained nine-month market-data corpus contains more than 120 million tick-level observations. Approximately ten identifiable individuals have used the platform over its production history across Fund Manager, Trader, Guest, and Admin roles.
 
-These figures are included as engineering evidence: repeated production execution, sustained real-time data handling, and a system that has had to survive normal operational reality rather than only a controlled demonstration.
+These figures are included as engineering evidence: repeated production execution, sustained real-time data handling, and actual use by people in different operational roles.
 
 ## Team evolution
 
@@ -63,10 +63,11 @@ That distinction matters. Adara's core architecture is not a product generated r
 
 ## Architecture as an operating responsibility
 
-I view the architecture of Adara as more than a component diagram. Three examples capture that responsibility:
+I view the architecture of Adara as more than a component diagram. Four examples capture that responsibility:
 
 - **Robustness by design:** external systems and connections can fail, so recovery and operational boundaries must be designed rather than hoped for.
 - **Tick-driven by design:** if a strategy reacts to each price movement, the data path has to be built for that event model from the start.
+- **Compliance by design:** if a controlled order must not reach the exchange when a rule fails, compliance belongs inside the execution path.
 - **Decision provenance by design:** if an automated order is questioned years later, the system should retain enough historical state to explain what happened and why.
 
 The public case study is organized around those decisions because they are more representative of my work as an architect than a list of framework names.

@@ -10,14 +10,16 @@ Adara is not a concept project or a hypothetical architecture. It is a real trad
 | --- | --- |
 | Production operation | **Since June 2023** |
 | Order processing | **5,000+ production orders** |
-| Aggregate traded volume | **€18M+** processed through Adara-supported workflows |
 | Retained market-data evidence | **120M+ tick-level observations in one retained nine-month corpus** |
 | Product breadth | **50+ operational capabilities** |
+| Known individual users | **~10 across Fund Manager, Trader, Guest, and Admin roles** |
 | Private source history | **Five-year development history; 538 commits as of September 2026** |
 
 The 120M+ figure is deliberately narrow: it describes one retained nine-month market-data corpus that can be directly evidenced. It is **not** presented as a lifetime count of every tick processed by Adara in real time.
 
-## Three architectural principles
+The user figure is also deliberately conservative: it refers to approximately ten identifiable individuals who have used Adara over its production history. Account counts varied over time because some people held more than one role.
+
+## Four architectural principles
 
 ### Robustness by design
 
@@ -31,11 +33,21 @@ Adara was designed around **individual price updates**, not around periodic cand
 
 Streaming ingestion and low-latency in-memory handling were first-class concerns because automated strategies could react to changing prices as they arrived. One retained nine-month corpus contains more than 120 million tick-level observations. See [Market Data and Portfolio](docs/05-market-data-and-portfolio.md).
 
+### Compliance by design
+
+Compliance is part of the execution path, not only a report generated afterwards.
+
+For Adara-originated discretionary and automated activity, applicable compliance controls are evaluated before exchange submission. A failing enforced control stops the order before it crosses the exchange boundary. The same architecture also retains order-level and portfolio-level evidence for later review.
+
+See [Compliance, Evidence and Reconstructability](docs/07-compliance-and-audit.md).
+
 ### Decision provenance by design
 
 For an automated financial system, retaining the final order is not enough. Adara was designed so that a historical order can be examined together with the operational context in which the decision and compliance evaluation were made.
 
-The persistent model links order history to time-relevant portfolio/account state, strategy origin, and compliance context. The objective is practical reconstructability: years later, the system should still be able to answer questions such as **“Why was this order allowed?”** and, for automated activity, **“What state caused the strategy to act?”** See [Order and Trading Lifecycle](docs/06-order-and-trading-lifecycle.md) and [Compliance and Audit](docs/07-compliance-and-audit.md).
+The persistent model links order history to time-relevant portfolio/account state, strategy origin, and compliance context. The objective is practical reconstructability: years later, the system should still be able to answer questions such as **“Why was this order allowed?”** and, for automated activity, **“What state caused the strategy to act?”**
+
+See [Order and Trading Lifecycle](docs/06-order-and-trading-lifecycle.md) and [Compliance, Evidence and Reconstructability](docs/07-compliance-and-audit.md).
 
 ## What Adara is
 
@@ -75,12 +87,6 @@ The market-data path was designed with strong latency awareness. The V1 order-cr
 
 That is documented here deliberately. It is a real architectural trade-off and accumulated technical debt, not something hidden behind a “perfect architecture” narrative. It is also one of the drivers for the Adara V2 architecture, where decisioning/execution and audit/reporting side effects are being separated more aggressively.
 
-## Compliance by design
-
-Compliance evaluation is part of the pre-trade path for Adara-originated discretionary and automated orders. Applicable controls can use normalized order value, account exposure, portfolio exposure, concentration, and retained portfolio context. If an applicable control fails, the order does not reach the exchange.
-
-For successfully controlled orders, Adara can produce order-level compliance evidence; separate scheduled portfolio-level compliance reports provide a broader historical view. See [Compliance and Audit](docs/07-compliance-and-audit.md).
-
 ## Source provenance
 
 This public case-study repository is intentionally recent. It is documentation, not the proprietary application repository.
@@ -107,7 +113,7 @@ The core production platform should therefore not be interpreted as an AI-genera
 4. [System architecture](docs/04-system-architecture.md)
 5. [Tick-driven market data, portfolio state, and snapshots](docs/05-market-data-and-portfolio.md)
 6. [Order lifecycle and decision provenance](docs/06-order-and-trading-lifecycle.md)
-7. [Compliance and reconstructability](docs/07-compliance-and-audit.md)
+7. [Compliance, evidence and reconstructability](docs/07-compliance-and-audit.md)
 8. [Strategy platform and latency-sensitive experiments](docs/08-strategy-platform.md)
 9. [Robustness and production reliability](docs/09-operations-and-reliability.md)
 10. [Operational scale](docs/10-operational-scale.md)

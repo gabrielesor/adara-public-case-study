@@ -1,10 +1,11 @@
 # System Architecture
 
-Adara is a modular Java trading and investment-operations platform built around three cross-cutting architectural principles:
+Adara is a modular Java trading and investment-operations platform built around four cross-cutting architectural principles:
 
 1. **Robustness by design**
 2. **Tick-driven by design**
-3. **Decision provenance by design**
+3. **Compliance by design**
+4. **Decision provenance by design**
 
 Those principles are more useful for understanding the system than a one-to-one list of JARs or runtime processes.
 
@@ -56,7 +57,9 @@ The V1 order path contains a known architectural debt: some report-generation an
 
 ### Compliance
 
-Compliance evaluates applicable controls before Adara-originated exchange submission. It uses order and portfolio context and can block an order before the exchange boundary.
+Compliance is positioned inside the execution architecture, before Adara-originated exchange submission.
+
+Applicable controls use order and portfolio context. A failing enforced control prevents the order from crossing the exchange boundary. The same control path applies to discretionary and automated origins, while warning thresholds and retained evidence serve separate operational purposes.
 
 ### Decision Context & Persistent State
 

@@ -11,8 +11,12 @@ Material must not expose:
 - proprietary strategy logic; or
 - private AiAlly prompts, MCP configuration, user identifiers, or conversation data.
 
-## Planned material
+## Historical material
 
-Before public release, this directory is expected to include the **early handwritten Adara architecture note** referenced from the *Robustness by design* section, after a final sensitivity review.
+The case study includes an original June 2023 handwritten Adara architecture note in the *Robustness by design* section:
 
-Production-console screenshots may be added later using synthetic or properly sanitized data. Their absence does not block publication of the technical case study.
+`adara-architecture-handwritten-june-2023.png`
+
+The photograph is intended to be reproduced without visual retouching because its value is documentary: it records the architecture thinking at the beginning of the production era.
+
+Additional production-console screenshots may be added later using synthetic or properly sanitized data. Their absence does not block publication of the technical case study.

@@ -2,7 +2,7 @@
 
 Adara contains more than 50 operational capabilities spanning live market data, multi-account portfolio state, trading, automated strategies, controlled execution, compliance, reporting, and production operations.
 
-This page is a map of responsibilities rather than a menu inventory. The architectural story behind those capabilities is driven by three cross-cutting principles: **robustness by design, tick-driven by design, and decision provenance by design**.
+This page is a map of responsibilities rather than a menu inventory. The architectural story behind those capabilities is driven by four cross-cutting principles: **robustness by design, tick-driven by design, compliance by design, and decision provenance by design**.
 
 ## Market Data
 

@@ -8,9 +8,9 @@ The figures on this page are selected because they provide concrete evidence tha
 | --- | --- |
 | Production operation | Since June 2023 |
 | Production orders | 5,000+ |
-| Aggregate traded volume | €18M+ |
 | Retained tick corpus | 120M+ records over one nine-month period |
 | Product breadth | 50+ operational capabilities |
+| Known individual users | ~10 across Fund Manager, Trader, Guest, and Admin roles |
 | Private source history | Five years, 538 commits as of September 2026 |
 
 ## Production duration
@@ -25,12 +25,6 @@ Adara has processed more than 5,000 production orders.
 
 The figure includes production order activity retained by the platform and is intentionally presented as an aggregate. It does not imply that every historical order originated inside Adara; external exchange activity can also be synchronized and retained with distinct provenance.
 
-## Aggregate traded volume
-
-More than **€18 million** in aggregate traded volume has passed through Adara-supported workflows.
-
-The figure is included as evidence of operational scale, not as evidence of profitability or investment performance.
-
 ## Tick-data scale
 
 A retained market-data corpus covering approximately **nine months** contains more than **120 million tick-level observations**.
@@ -38,6 +32,21 @@ A retained market-data corpus covering approximately **nine months** contains mo
 This is an especially useful engineering metric because it demonstrates the scale of data produced by Adara's tick-driven architecture.
 
 The figure is intentionally narrow and defensible: it describes one retained corpus. It is not presented as a lifetime count of all real-time price updates processed by the system.
+
+## Human production use
+
+Approximately **ten identifiable individuals** have used Adara over its production history.
+
+The roles represented include:
+
+- Fund Manager;
+- Trader;
+- Guest; and
+- Admin.
+
+This is a conservative individual-user figure, not a peak account count. The number of user accounts varied because one person could hold more than one role or credential over time.
+
+The metric is included because it demonstrates that Adara has been used by multiple people in different operational roles rather than only by its developer.
 
 ## Capability breadth
 
@@ -68,8 +77,8 @@ Together they establish:
 
 - multi-year production use;
 - repeated order processing;
-- financially material operational volume;
 - sustained tick-data handling;
+- multi-role human use;
 - broad product scope; and
 - a multi-year private engineering history.
 

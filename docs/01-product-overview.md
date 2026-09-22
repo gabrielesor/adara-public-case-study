@@ -12,7 +12,7 @@ Market prices can change many times per second. Exchange APIs expose heterogeneo
 
 Adara was built to connect these responsibilities rather than implement them as unrelated scripts.
 
-## Three founding architectural principles
+## Four founding architectural principles
 
 ### Robustness by design
 
@@ -28,13 +28,21 @@ That decision shaped the ingestion and in-memory processing model because some a
 
 See [Market Data and Portfolio](05-market-data-and-portfolio.md).
 
+### Compliance by design
+
+Compliance was built into the controlled execution path.
+
+For Adara-originated discretionary and automated orders, applicable controls are evaluated before exchange submission. A failing enforced control stops the order before it reaches the exchange. Retained order-level and portfolio-level evidence supports later review.
+
+See [Compliance, Evidence and Reconstructability](07-compliance-and-audit.md).
+
 ### Decision provenance by design
 
 A historical order should not become an unexplained database row. Adara retains origin and time-relevant operational context so that a later review can reconstruct why a controlled order was allowed and, for automated activity, why the strategy generated it.
 
 The design links orders to retained account/portfolio state, strategy origin and configuration context, and compliance evidence. This enables practical reconstructability even years after the event.
 
-See [Order and Trading Lifecycle](06-order-and-trading-lifecycle.md) and [Compliance and Audit](07-compliance-and-audit.md).
+See [Order and Trading Lifecycle](06-order-and-trading-lifecycle.md) and [Compliance, Evidence and Reconstructability](07-compliance-and-audit.md).
 
 ## Operational model
 
@@ -50,24 +58,18 @@ Human-directed trading and automated strategies use the same broader operational
 
 Automated strategies consume real-time market state and can maintain their own lifecycle and configuration. Proprietary decision logic remains outside this public case study; what is public is the surrounding engineering required to run strategies safely inside a production platform.
 
-## Compliance as execution control
-
-Compliance is not only a report produced after trading. Applicable controls are evaluated before Adara-originated exchange submission. Controls can use normalized order value, account exposure, portfolio exposure, concentration, and other retained operating context.
-
-A failed applicable control stops the Adara-originated order before the exchange boundary. Successful controlled orders can be associated with retained order-level compliance evidence, while scheduled portfolio-level reporting supplies a separate historical view.
-
 ## Production evidence
 
 As of September 2026, the public case study uses the following aggregate evidence:
 
 - production operation since **June 2023**;
 - **5,000+** production orders processed;
-- **€18M+** aggregate traded volume through Adara-supported workflows;
 - **120M+** retained tick-level observations in one nine-month corpus;
-- **50+** operational capabilities; and
+- **50+** operational capabilities;
+- approximately **10 known individual users** across Fund Manager, Trader, Guest, and Admin roles; and
 - a private source history spanning **five years and 538 commits**.
 
-These figures establish production use and engineering scale. They are not claims about investment performance, profitability, availability percentage, or a lifetime tick total.
+These figures establish production use and engineering scale. They are not claims about investment performance, availability percentage, or a lifetime tick total.
 
 ## Technical positioning
 
