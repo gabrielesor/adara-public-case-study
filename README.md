@@ -2,7 +2,7 @@
 
 **Public technical case study of a proprietary system designed, built, and operated in production since June 2023.**
 
-Adara is not a concept project or a hypothetical architecture. It is a real trading and investment-operations platform owned by Gabriele Soranzo, used as internal tooling in a real investment-management environment. Gabriele conceived the product, designed its architecture, built the original platform end-to-end, and has remained responsible for its technical evolution and production operation.
+Adara is a proprietary production trading and investment-operations platform, used as internal tooling in a real investment-management environment since June 2023. Gabriele Soranzo conceived the product, designed its architecture, built the original platform end-to-end, and has remained responsible for its technical evolution and production operation.
 
 ## Production evidence at a glance
 
