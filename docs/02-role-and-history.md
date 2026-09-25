@@ -1,10 +1,8 @@
 # Product Ownership and Engineering Role
 
-This page is intentionally written in the first person because Adara is both a software product and a record of my own architecture and engineering work.
+I conceived Adara, designed its original architecture, and initially implemented the platform end-to-end.
 
 ## What I owned
-
-I conceived Adara, designed its original architecture, and initially implemented the platform end-to-end.
 
 That work covered the system as an integrated whole:
 
@@ -37,13 +35,11 @@ A junior developer later contributed to selected development activities under my
 
 I retained architecture responsibility and the integration view of the product. The division of work is therefore best described as: **I designed and substantially built the platform; later development expanded through a junior contributor working under my technical direction.**
 
-This case study does not minimize that contributor's work, but it also does not dilute ownership of the original architecture and the end-to-end system.
-
 ## Source provenance
 
 The repository you are reading is a recent public case-study repository. It should not be mistaken for the age of the product.
 
-The proprietary Adara source repository remains private. As of September 2026, it has a **five-year development history and 538 commits**. The private history is retained because the codebase contains proprietary strategy logic, security-sensitive configuration, and production implementation detail that should not be published merely to demonstrate authorship.
+The proprietary Adara source repository remains private. As of September 2026, it has a **five-year development history and 538 commits**. It remains private because the codebase contains proprietary strategy logic, security-sensitive configuration, and production implementation detail.
 
 The public case study therefore exposes architecture, decisions, operating evidence, trade-offs, and lessons learned while keeping the application source private.
 
@@ -70,13 +66,13 @@ I view the architecture of Adara as more than a component diagram. Four examples
 - **Compliance by design:** if a controlled order must not reach the exchange when a rule fails, compliance belongs inside the execution path.
 - **Decision provenance by design:** if an automated order is questioned years later, the system should retain enough historical state to explain what happened and why.
 
-The public case study is organized around those decisions because they are more representative of my work as an architect than a list of framework names.
+Those decisions are more representative of my work as an architect than a list of framework names.
 
 ## A real-system lesson: not every path aged equally
 
 The tick-processing path was designed with strong latency awareness. The V1 order path accumulated synchronous work over time, including report generation and notification side effects, and observed end-to-end order creation could reach roughly 2–8 seconds.
 
-I include that fact because architecture work also means recognizing where a successful production system has accumulated debt. Adara V2 is being designed with a much stricter separation between fast decision/execution paths and asynchronous audit, reporting, and notification work.
+That debt is an important input to Adara V2, which is being designed with a much stricter separation between fast decision/execution paths and asynchronous audit, reporting, and notification work.
 
 ## Public boundary
 

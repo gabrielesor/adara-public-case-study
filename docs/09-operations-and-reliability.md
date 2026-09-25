@@ -50,7 +50,7 @@ Trading and streaming market data depend on external venues and network connecti
 
 Adara's integration model was built around long-running connections and recovery-aware behavior rather than assuming that a WebSocket or API session remains valid forever.
 
-The public case study deliberately avoids publishing retry constants, credentials, endpoints, or provider-specific security configuration, but robustness of exchange connectivity is part of the architecture, not just an operations runbook concern.
+Retry constants, credentials, endpoints, and provider-specific security configuration remain private. Robustness of exchange connectivity is part of the architecture, not just an operations runbook concern.
 
 ## Persistent and in-memory state
 
@@ -91,8 +91,6 @@ The V1 order path accumulated synchronous reporting and notification work, contr
 This case study does not claim a global lifetime uptime percentage.
 
 Instead, it documents concrete robustness mechanisms and production surfaces while keeping each measurement scoped to what it actually observes.
-
-That is deliberate engineering precision, not an attempt to avoid discussing reliability.
 
 ## Public boundary
 

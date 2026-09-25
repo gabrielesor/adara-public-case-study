@@ -53,7 +53,7 @@ Automated strategies consume current market state and produce trading intent. Th
 
 This area accepts discretionary and automated intent and manages validation, submission, monitoring, fills, cancellation, fees, history, and provenance.
 
-The V1 order path contains a known architectural debt: some report-generation and notification side effects remained synchronous, so observed end-to-end order creation could reach roughly **2–8 seconds**. This is documented explicitly because it is one of the V2 drivers.
+The V1 order path contains a known architectural debt: some report-generation and notification side effects remained synchronous, so observed end-to-end order creation could reach roughly **2–8 seconds**. This debt is one of the V2 drivers.
 
 ### Compliance
 

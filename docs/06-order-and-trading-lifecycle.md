@@ -64,7 +64,7 @@ Although the market-data path was designed for low-latency tick handling, V1 ord
 
 In practical terms, work such as compliance-document generation, email delivery, and messaging notification became coupled too closely to the critical execution path.
 
-The behavior is documented rather than hidden because it is an important V2 design input: fast execution should be separated from asynchronous evidence generation and notification wherever the control model allows it.
+This behavior is an important V2 design input: fast execution should be separated from asynchronous evidence generation and notification wherever the control model allows it.
 
 ## Evidence and reporting
 

@@ -69,7 +69,7 @@ The proprietary application repository remains private.
 
 As of September 2026, its development history spans approximately **five years and 538 commits**.
 
-The public case-study repository is deliberately newer and contains documentation rather than a synthetic recreation of the application's historical Git timeline.
+The public case-study repository is newer and documents the application without mirroring its private Git history.
 
 ## What these figures do and do not establish
 

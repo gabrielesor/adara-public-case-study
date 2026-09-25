@@ -1,6 +1,6 @@
 # AI-Assisted Operations — AiAlly
 
-AiAlly is a later AI-assisted interface layer over Adara. It should not be confused with the core trading architecture or with Adara's proprietary automated strategies.
+AiAlly is a later AI-assisted interface layer over Adara, distinct from the core trading architecture and Adara's proprietary automated strategies.
 
 Most of the platform described in this case study — market data, portfolio state, order management, compliance, exchange integration, persistence, and production operations — was designed and implemented before generative AI became part of the development workflow.
 

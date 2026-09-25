@@ -85,7 +85,7 @@ See [System Architecture](docs/04-system-architecture.md) and the [Market State 
 
 The market-data path was designed with strong latency awareness. The V1 order-creation path evolved differently: some report-generation and notification work remained synchronous, so observed end-to-end order creation could reach roughly **2–8 seconds**.
 
-That is documented here deliberately. It is a real architectural trade-off and accumulated technical debt, not something hidden behind a “perfect architecture” narrative. It is also one of the drivers for the Adara V2 architecture, where decisioning/execution and audit/reporting side effects are being separated more aggressively.
+This is a real architectural trade-off and accumulated technical debt, and one of the drivers for the Adara V2 architecture, where decisioning/execution and audit/reporting side effects are being separated more aggressively.
 
 ## Source provenance
 
@@ -121,4 +121,4 @@ The core production platform should therefore not be interpreted as an AI-genera
 
 ## Confidentiality and scope
 
-This repository documents architecture and production experience without publishing proprietary application source code, credentials, exact strategy algorithms, real account identifiers, positions, balances, or transaction-level financial data. Screenshots and historical artifacts must use synthetic, sanitized, or non-sensitive material.
+This repository documents architecture and production experience without publishing proprietary application source code, credentials, exact strategy algorithms, real account identifiers, positions, balances, or transaction-level financial data.
