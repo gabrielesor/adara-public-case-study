@@ -65,4 +65,4 @@ This does not change the authorship history of the core platform, which substant
 
 Private prompts, credentials, endpoints, tool inventories, user identifiers, trace data, retrieved private documents, and production operational data are not published.
 
-[← Previous](10-operational-scale.md) | [Case Study Home](../README.md)
+[← Previous](10-operational-scale.md) | [Case Study Home](../README.md) | [Next →](12-current-development-and-rd.md)

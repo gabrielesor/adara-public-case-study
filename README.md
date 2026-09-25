@@ -118,6 +118,7 @@ The core production platform should therefore not be interpreted as an AI-genera
 9. [Robustness and production reliability](docs/09-operations-and-reliability.md)
 10. [Operational scale](docs/10-operational-scale.md)
 11. [AI-assisted operations with AiAlly](docs/11-ai-assisted-operations.md)
+12. [Current development and exploratory R&D](docs/12-current-development-and-rd.md)
 
 ## Confidentiality and scope
 
